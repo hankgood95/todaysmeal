@@ -1,0 +1,20 @@
+#dataTable{
+	table-layout:fixed;
+}
+#date {
+	width:10%;
+}
+#title-head{
+	width:80%;
+}
+#writer {
+	width:10%;
+}
+.title{
+	/*무조건 1줄로 처리시키는것*/
+	white-space: nowrap;
+	/*넘치면 숨긴다*/ 
+	overflow: hidden;
+	/*넘치면 ... 말줄임표로 대체한다는뜻*/ 
+	text-overflow: ellipsis;
+}
