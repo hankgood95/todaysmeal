@@ -27,7 +27,7 @@
 		<hr class="sidebar-divider my-0">
 
 		<!-- Nav Item - Dashboard -->
-		<li class="nav-item active"><a class="nav-link" href="admin">
+		<li class="nav-item"><a class="nav-link" href="admin">
 				<i class="fas fa-fw fa-tachometer-alt"></i> <span>대쉬보드</span>
 		</a></li>
 
