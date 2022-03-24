@@ -28,7 +28,6 @@
     	<c:if test="${ pageName eq 'noticePage' }">
     		<script>
 	            $(document).ready(function() {
-	            	$("#accordionSidebar").children(".nav-item").eq(0).removeClass("active");
 	                $("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
 	                //글쓰기 버튼 클릭시 화면 이동
 	                $("#write").click(function(){
@@ -37,7 +36,6 @@
 	            });
     		</script>
 		</c:if>
-		<c:set var="uri" value="${pageContext.request.requestURI}"/>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -86,7 +84,7 @@
                                         <tr>
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
-                                            <td>${ uri }</td>
+                                            <td>채준호</td>
                                         </tr>   
                                         <tr>
                                             <td>2022/03/14</td>
