@@ -14,6 +14,14 @@
     
     <!-- 해당 페이지에서 사용할 css파일 -->
     <link href="${pageContext.servletContext.contextPath}/resources/admin/css/dataTables.css" rel="stylesheet">
+    <style>
+    	#dataTable tbody tr{
+    		cursor:pointer;
+    	}
+    	#dataTable tbody tr:hover{
+    		background-color:gray;
+    	}
+    </style>
 </head>
 <body id="page-top">
 	
@@ -28,10 +36,21 @@
     	<c:if test="${ pageName eq 'noticePage' }">
     		<script>
 	            $(document).ready(function() {
-	                $("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
+	            	$("#modal").hide();
+	                
+	            	$("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
+	                
 	                //글쓰기 버튼 클릭시 화면 이동
 	                $("#write").click(function(){
 	                	location.href="newnotice"
+	                });
+	                
+	                $(".show-modal").click(function(){
+	                	$("#modal").show();
+	                });
+	                
+	                $("#cancel").click(function(){
+	                	$("#modal").hide();
 	                })
 	            });
     		</script>
@@ -66,52 +85,52 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아아아아앙아ㅏㅇ아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</td>
                                             <td>이욱재</td>
                                         </tr>
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>함종석</td>
                                         </tr>         
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>김세환</td>
                                         </tr>
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>채준호</td>
                                         </tr>   
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>전증훈</td>
                                         </tr>
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>이재명</td>
                                         </tr>   
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>윤석열</td>
                                         </tr>   
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>안철수</td>
                                         </tr>   
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/14</td>
                                             <td class="title">가즈아</td>
                                             <td>심상정</td>
                                         </tr>   
-                                        <tr>
+                                        <tr class="show-modal">
                                             <td>2022/03/15</td>
                                             <td class="title">가즈아</td>
                                             <td>허경영</td>
@@ -127,7 +146,10 @@
 
             </div>
             <!-- End of Main Content -->
-
+			<div id="modal" style="border:1px solid red;">
+				하하 나는 모달창이야
+				<button id="cancel">취소</button>
+			</div>
             <!-- Footer 부분 이건   content-wrapper 제일 아래에 위치시키도록 하자-->
 			<jsp:include page="common/footer.jsp"/>
             <!-- End of Footer -->
@@ -154,7 +176,6 @@
 	<!-- DataTable 설정에 관련된 js -->
 	<script src="${pageContext.servletContext.contextPath}/resources/admin/js/datatables/datatables_set.js"></script>
 	<!-- DataTables를 사용하기 위해 사용하는 플러그인 끝 -->
-
 </body>
 
 </html>
