@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -75,56 +76,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아아아아앙아ㅏㅇ아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아아아아아아아아앙아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</td>
-                                            <td>이욱재</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>함종석</td>
-                                        </tr>         
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>김세환</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>채준호</td>
-                                        </tr>   
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>전증훈</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>이재명</td>
-                                        </tr>   
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>윤석열</td>
-                                        </tr>   
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>안철수</td>
-                                        </tr>   
-                                        <tr>
-                                            <td>2022/03/14</td>
-                                            <td class="title">가즈아</td>
-                                            <td>심상정</td>
-                                        </tr>   
-                                        <tr>
-                                            <td>2022/03/15</td>
-                                            <td class="title">가즈아</td>
-                                            <td>허경영</td>
-                                        </tr>                                                                                                                                                                                                                                                                                                                                                                                               
+                                    	<c:choose>
+                                    		<c:when test="${noticeList ne 'emptyList'}">
+                                    			<c:forEach items="${ noticeList }" var="notice">
+                                    				<tr class="gotoDetail">
+	                                    				<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${notice.date}"/></td>
+	                                    				<td class="title">${notice.title}</td>
+	                                    				<td>${notice.writer}</td>                            				
+                                    				</tr>
+                                    				<c:url var="nDetail" value="noticedetail">
+                                    					<c:param name="noticeNum" value="${ notice.notice_num }"/>
+                                    				</c:url>
+                                    				<script>
+	                                    	            $(document).ready(function() {
+	                                    	                
+	                                    	                $(".gotoDetail").click(function(){
+	                                    	                	location.href="${nDetail}"
+	                                    	                });
+	                                    	            });
+                                    				</script>
+                                    			</c:forEach>
+                                    		</c:when>
+                                    	</c:choose>                                                                                                                                                                                                                                                                                                                                                                                        
                                     </tbody>
                                 </table>
                             </div>
