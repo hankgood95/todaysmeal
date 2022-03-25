@@ -11,8 +11,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+    <style>
+    	.margin-top{
+    		margin-top:20px;
+    		float:right;
+    	}
+    </style>
+    <script>
+    	function storeNotice(){
+    		alert("저장 만들꼬얌!!");
+    		window.history.back();
+    	}
+    	function cancel(){
+    		if(confirm("작성한 내용을 정말 취소하시겠습니까??")){
+    			window.history.back();	
+    		}
+    	}
+    </script>
 </head>
+
 <body id="page-top">
 	
 	<!-- jQuery 사용을 위한 include, 항상 최상단에 위치해 있어야 함 -->
@@ -51,13 +68,21 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary">공지사항항항</h4>
+                            <h4 class="m-0 font-weight-bold text-primary">공지사항</h4>
                         </div>
                         
                         <div class="card-body" style="height:auto">
                         	<form>
-                        		<input type="text"/>
+                        		<div class="input-group input-group-lg">
+								  <div class="input-group-prepend">
+								    <span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
+								  </div>
+								  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+								</div>
                         		<div id="summernote"></div>
+                        		<button type="button" class="btn btn-primary margin-top" style="margin-left : 15px"
+                        		onclick="storeNotice();">저장</button>
+                        		<button type="button" class="btn btn-secondary margin-top" onclick="cancel();">취소</button>
                         	</form>
                         </div>
                     </div>
@@ -81,6 +106,7 @@
 	<!-- 맨위로 올라가게 해주는 토글 버튼과 우측 상단로그아웃 부분. 이건 항상 body의 제일 아래부분에 있도록 위치시키자 -->
 	<jsp:include page="common/logout_scroll.jsp"/>
 	<!-- summernote cdn 시작-->
+	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 
