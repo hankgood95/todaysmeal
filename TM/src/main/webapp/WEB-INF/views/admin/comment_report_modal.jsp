@@ -8,12 +8,15 @@
 	href="${pageContext.servletContext.contextPath}/resources/admin/css/admin_comment_modal.css"
 	rel="stylesheet">
 <style type="text/css">
-.tg {		
+.tg {
  	width : 500px;
 	border: none;
 	border-collapse: collapse;
 	border-color: #93a1a1;
 	border-spacing: 0;
+	margin-left : 100px;
+	margin-top: 50px;
+	
 }
 
 .tg td {
@@ -61,6 +64,53 @@
 	text-align: left;
 	vertical-align: top
 }
+.yellow-card {
+	all: unset;
+	 background-color: green;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+
+
+}
+
+.red-card {
+	all: unset;
+	background-color: red;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.wrap-card {
+	display :flex;
+	
+		
+}
+
+.yellow-card{
+	margin-left: 260px;
+	margin-top : 30px;
+
+
+}
+
+.red-card{
+	
+	margin-left : 20px;
+	margin-top : 30px;
+
+}
+
+#report-context {
+	height : auto;
+	max-width : 500px;
+	overflow:hidden;
+}
 </style>
 </head>
 <body>
@@ -86,16 +136,20 @@
 						<td class="tg-c3ow" colspan="5">댓글 내용</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5">ㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇㄴㅁㅇㄴㅁㅇㄴㅁㅇㄴㅁㅇㄴㅁㅇㄴㅁㅇ</td>
+						<td class="tg-2bhk" colspan="5" id= "report-context">12342131231231321312312321311111111111111111111111111111111111111222222222222222222222222233333333333333</td>
 					</tr>
 					<tr>
 						<td class="tg-c3ow" colspan="5">신고사유</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5">ㅇㄴㅁ읜ㅁ읜ㅁ아ㅣㄴ무아ㅣㄴㅁ아ㅣㅜㄴ마우남우ㅏㅣㄴㅁ우마</td>
+						<td class="tg-2bhk" colspan="5" id="report-reason">ㅇㄴㅁ읜ㅁ읜ㅁ아ㅣㄴ무아ㅣㄴㅁ아ㅣㅜㄴ마우남우ㅏㅣㄴㅁ우마</td>
 					</tr>
 				</tbody>
 			</table>
+			<div class= "wrap-card">
+			<button class="yellow-card">경고</button>
+			<button class="red-card">블랙</button>
+			</div>
 		</div>
 	</div>
 </body>
