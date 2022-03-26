@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 #modal {
 	width: 50%;
 	height: 50vh;
@@ -18,20 +17,22 @@
 	background: rgba(255, 255, 255, 0.7);
 	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
-  #modal .modal-window {
-            background: rgba( 69, 139, 197, 0.70 );
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 13.5px );
-            -webkit-backdrop-filter: blur( 13.5px );
-            border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
-            width: 100%;
-            height: 50vh;
-            position:relative;
-            top: 50%;
-            left:50%;
-            transform: translate(-50%, -50%);
-        }
+
+#modal .modal-window {
+	background: rgba(69, 139, 197, 0.70);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 100%;
+	height: 50vh;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .modal-overlay .modal-title {
 	padding-left: 10px;
 	text-shadow: 1px 1px 2px gray;
@@ -42,18 +43,18 @@
 }
 
 #modal .modal-title h2 {
-	  position :relative;
-	  top : 17px;
-      display: inline;
-      text-align: center;
-      padding : 270px;
- }
+	position: relative;
+	top: 17px;
+	display: inline;
+	text-align: center;
+	padding: 270px;
+}
 
 #modal .close-area {
-	font-size : 25px;
-	position : relative;
-	top : 18px;
-	right : 25px;
+	font-size: 25px;
+	position: relative;
+	top: 18px;
+	right: 25px;
 	display: inline;
 	float: right;
 	padding-right: 10px;
@@ -61,9 +62,3 @@
 	text-shadow: 1px 1px 2px gray;
 	color: white;
 }
-
-.tg {
-	border-collapse:collapse;
-	border-spacing:0;
-	}
-	
