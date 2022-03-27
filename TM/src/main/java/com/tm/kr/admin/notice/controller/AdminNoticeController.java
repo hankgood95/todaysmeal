@@ -23,6 +23,7 @@ public class AdminNoticeController {
 	Member wook;
 	Notice notice;
 	
+	//Notice List로 이동하기 위한 부분
 	@RequestMapping(value = "adminNoticeList")
 	public String adminNoticeList(Model model) {
 		logger.info("admin Notice page에 들어왔다.");
@@ -59,6 +60,7 @@ public class AdminNoticeController {
 		return "admin/notice_list";
 	}
 	
+	//새로운 notice 작성 페이지로 넘어가기 위해서
 	@RequestMapping(value="newnotice")
 	public String newNotice(Model model) {
 		
@@ -68,17 +70,37 @@ public class AdminNoticeController {
 		return "admin/new_notice";
 	}
 	
+	//notice 상세보기를 보여주기 위해서
 	@RequestMapping(value="noticedetail")
 	public String noticeDetail(HttpServletRequest request,Model model) {
 		
 		logger.info("admin Notice Detail Page에 들어왔다.");
 		model.addAttribute("pageName", "noticePage");
-		String noticeNum = request.getParameter("noticeNum");
 		
 		//받아온 noticeNum을 가지고 이제 DB 조회를 해서 notice를 가져오면 됨
+		String noticeNum = request.getParameter("noticeNum");
+		logger.info("notice number is : "+noticeNum);
+		
+		//하지만 난 가져올 DB가 없으니 일단은 위에서 만든 notice를 보내줌
+		model.addAttribute("noticeNum",noticeNum);
+		model.addAttribute("notice", notice);
+		return "admin/notice_detail";
+	}
+	
+	//notice update 화면으로 이동시켜주기 위해서
+	@RequestMapping(value="upNotice")
+	public String updateNotice(HttpServletRequest request,Model model) {
+		
+		logger.info("admin Notice update Page에 들어왔다.");
+		model.addAttribute("pageName", "noticePage");
+		
+		//받아온 noticeNum을 가지고 이제 DB 조회를 해서 notice를 가져오면 됨
+		String noticeNum = request.getParameter("noticeNum");
 		
 		logger.info("notice number is : "+noticeNum);
 		
-		return "admin/notice_detail";
+		//하지만 난 가져올 DB가 없으니 일단은 위에서 만든 notice를 보내줌
+		model.addAttribute("notice", notice);
+		return "admin/update_notice";
 	}
 }
