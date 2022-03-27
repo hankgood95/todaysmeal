@@ -1,55 +1,13 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Vote Board</title>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Genre', '짜장면', '짬뽕', { role: 'annotation' } ],
-        ['음식', 10, 24, ''],
-
-      ]);
-
-	var view = new google.visualization.DataView(data);
-	view.setColumns([0, 1,
-	                 { calc: "stringify",
-	                   sourceColumn: 1,
-	                   type: "string",
-	                   role: "annotation" },
-	                 2]);
-
-
-
-	var options = {
-	  width: 400,
-	  height: 70,
-	  legend: { position: 'top', maxLines: 3 },
-	  bar: { groupWidth: '75%' },
-	  isStacked: 'percent'
-	};
-	
-   
-    
-	var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-	chart.draw(view, options);
-}
-  
-</script>
+<link href="${pageContext.request.contextPath}/resources/main/css/index.css" rel="stylesheet" type="text/css">
 
 <style>
-
 .td {
 	vertical-align: middle;
 }
@@ -79,9 +37,8 @@ function drawChart() {
 }
 
 .titlediv {
-	left: 50%;
-	top: 50%;
-	width: 50%;
+	width: 800px;
+	margin: auto;
 }
 
 .itemdiv {
@@ -138,71 +95,113 @@ function drawChart() {
     border: solid 1px #df4759;
 }
 
+img {
+    width: 100%;
+    height: 200px;
+}
 
-
+rect {
+	margin: auto;
+}
 </style>
 
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
 <body>
-
-<div id="barchart_values" style="width: 900px; height: 300px;"></div>
-
-
-<div class="titlediv">
-	<p style="text-align: left; font-size: 25px;"> 오늘의 식사</p>
-	<hr size="5" width="100%" align="center" style="color: red;">
-</div>
+	<!-- Header Include -->
+	<%@include file ="/WEB-INF/views/common/header.jsp"%>
+    
+    <!-- Card Section -->
+<section class="py-0">
+    <div class="container px-4 px-lg-5 mt-5">
+    
+        <div>
+			<p class="btn btn-dark d-md-flex justify-content-md-center" style="width:53%; margin: auto; font-size: 20px; text-align: center; font-weight: 100px; font-style: italic;"> 3월 셋째주 투표  </p>
+		</div>
 		
-<div class="itemdiv">
-	<table class="table">
-		<tr>
-			<th class="num">번호</th>
-			<th class="thumb"> 썸네일 </th>
-			<th class="name">말머리</th>
-			<th class="subject">제목</th>
-			<th class="regdate">투표기간</th>
-		</tr>
-		<tr>
-			<td> 1 </td>
-			<td> <img class="img-thumbnail" alt="..." src="${pageContext.servletContext.contextPath}/resources/board/img/food1.jpg" width="100" height="100"> </td>
-			<td> 식사 </td>
-			<td> 오늘의 식사 짜장면 </td>
-			<td> #월 #째주 </td>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        
+            <div class="col mb-5">
+                <div class="card h-60">
+                    <!-- Product image-->
+                    <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">짜장면</h5>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"> 투표 </a></div>
+                    </div>
+                </div>
+            </div>
+            <div style="line-height: 465px; width: 60px;">
+           		<p style="font-size: 30px; font-weight: 100px; text-align: center;">VS</p> 
+           	</div>
+            <div class="col mb-5">
+                <div class="card h-60">
+                    <!-- Product image-->
+                    <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/b.jpeg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">짬뽕</h5>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"> 투표 </a></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="barchart_values" style="width: 650px; height: 100px; "></div>
+  	     </div>
+    </div>
+</section>
+    
+<!-- Footer Include -->
+<%@include file ="/WEB-INF/views/common/footer.jsp"%>
 
-		</tr>
-		<tr>
-			<td> 2 </td>
-			<td> <img class="img-thumbnail" alt="..." src="${pageContext.servletContext.contextPath}/resources/board/img/food2.jpg" width="100" height="100"> </td>
-			<td> 식사 </td>
-			<td> 오늘의 괴식 김가루 말아먹는 콘프레이크 시리얼 </td>
-			<td> #월 #째주 </td>
+<!-- Char JS -->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Genre', '짜장면', '짬뽕', { role: 'annotation' } ],
+        ['', 10, 24, ''],
 
-		</tr>			
-
-	</table>
-</div>
-
-<div class="paging">
-	<div class="paging-body">
-		<nav aria-label="Page navigation example" style="position: absolute; left: 50%;">
-			<ul class="pagination" style="width: 900px;">
-			    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">다음</a></li>
-			</ul>
-		</nav>
-	</div>
-	<div style="width: 50%; position: absolute;">
-	<div style="text-align: left; position: absolute; left: 00%;">
-		<button type="button" class="btn btn-outline-danger">새로고침 </button>
-	</div>
-	<div style="text-align: right; position: absolute; right: 0%;">
-		<button type="button" class="btn btn-outline-danger" onclick="location.href='${pageContext.request.contextPath}/board/write';">글쓰기</button>
-	</div>
-	</div>
-</div>
+      ]);
+	var view = new google.visualization.DataView(data);
+	view.setColumns([0, 1,
+	                 { calc: "stringify",
+	                   sourceColumn: 1,
+	                   type: "string",
+	                   role: "annotation" },
+	                 2]);
+	var options = {
+	  width: '100%',
+	  height: 70,
+	  legend: { position: 'top', maxLines: 3 },
+	  bar: { groupWidth: '75%' },
+	  isStacked: 'percent'
+	};
+	var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+	chart.draw(view, options);
+}
+</script>
 	
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
