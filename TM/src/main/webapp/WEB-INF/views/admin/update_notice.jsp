@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+    <style>
+    	.margin-top{
+    		margin-top:20px;
+    		float:right;
+    	}
+    </style>
+    <script>
+    	function storeNotice(){
+    		alert("저장 만들꼬얌!!");
+    		window.history.back();
+    	}
+    	function cancel(){
+    		if(confirm("작성한 내용을 정말 취소하시겠습니까??")){
+    			window.history.back();	
+    		}
+    	}
+    </script>
 </head>
 
 <body id="page-top">
@@ -29,19 +44,12 @@
     		<script>
 	            $(document).ready(function() {
 	                $("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
+	                
+	                $('#summernote').summernote({
+	                	height: 500,
+	                	lang: "ko-KR"
+	                });
 	            });
-	            
-	            function backToList(){
-	            	window.history.back();
-	            }
-	            function gotoUpdate(){
-	            	alert("수정 가즈아!!");
-	            	location.href="upNotice"
-	            }
-	            function deleteNotice(){
-	            	alert("삭제할꼬얌!!");
-	            	window.history.back();
-	            }
     		</script>
 		</c:if>	 
         <!-- Content Wrapper -->
@@ -62,43 +70,21 @@
                             <h4 class="m-0 font-weight-bold text-primary">공지사항</h4>
                         </div>
                         
-                        <div class="card-body" style="height:auto; padding-top:0;">
-                        	<table style="width:100%;">
-                        		<colgroup>
-							  		<col style="width:10%"/>
-							  		<col style="width:90%" />
-							    </colgroup>
-                        		<tbody>
-	                        		<tr>
-	                        			<td colspan="2" style="padding:10px;background-color:#E6E6E6;">
-	                        				<b>${ notice.title }</b>
-	                        			</td>
-	                        		</tr>
-	                        		<tr>
-	                        			<br>
-	                        			<td colspan="2" style="padding:10px;">
-	                        				<span>${ notice.writer }</span>
-	                        				<span style="margin-right:15px;margin-left:15px">|</span>
-	                        				<span><fmt:formatDate pattern = "yyyy/MM/dd HH:mm:ss" value="${notice.date}"/></span>
-	                        				<hr>
-	                        			</td>
-	                        		</tr>	                        			                        		
-	                        		<tr>
-	                        			<td colspan="2">
-	                        				<div style="height:50vh;">
-	                        					${ notice.content }
-	                        				</div>
-	                        			</td>
-	                        		</tr>                 			
-                        		</tbody>
-								
-                        	</table>
-                        	<c:url var="nUpdate" value="upNotice">
-                        		<c:param name="noticeNum" value="noticeNum"/>
-                        	</c:url>
-                        	<button type="button" class="btn btn-primary" style="float:right; margin-left:10px" onclick="location.href='${nUpdate}'">수정하기</button>
-							<button type="button" class="btn btn-secondary" style="float:right; margin-left:10px" onclick="backToList()">목록으로</button>
-							<button type="button" class="btn btn-danger"style="float:right;" onclick="deleteNotice()">삭제하기</button>
+                        <div class="card-body" style="height:auto">
+                        	<form>
+                        		<div class="input-group input-group-lg">
+								  <div class="input-group-prepend" style="margin-bottom:10px">
+								    <span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
+								  </div>
+								  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value="${notice.title }">
+								</div>
+                        		<div id="summernote">
+                        			${ notice.content }
+                        		</div>
+                        		<button type="button" class="btn btn-primary margin-top" style="margin-left : 15px"
+                        		onclick="storeNotice();">저장</button>
+                        		<button type="button" class="btn btn-secondary margin-top" onclick="cancel();">취소</button>
+                        	</form>
                         </div>
                     </div>
 
@@ -120,6 +106,12 @@
 	
 	<!-- 맨위로 올라가게 해주는 토글 버튼과 우측 상단로그아웃 부분. 이건 항상 body의 제일 아래부분에 있도록 위치시키자 -->
 	<jsp:include page="common/logout_scroll.jsp"/>
+	<!-- summernote cdn 시작-->
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+	<!-- summernote cdn 끝 -->
 
 </body>
 
