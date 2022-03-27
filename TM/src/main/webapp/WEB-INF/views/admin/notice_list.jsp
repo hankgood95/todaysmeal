@@ -38,7 +38,6 @@
     		<script>
 	            $(document).ready(function() {
 	            	$("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
-	                
 	                //글쓰기 버튼 클릭시 화면 이동
 	                $("#write").click(function(){
 	                	location.href="newnotice"

@@ -49,34 +49,33 @@
                             <h4 class="m-0 font-weight-bold text-primary">공지사항</h4>
                         </div>
                         
-                        <div class="card-body" style="height:auto">
-                        	<table>
+                        <div class="card-body" style="height:auto; padding-top:0;">
+                        	<table style="width:100%;">
+                        		<colgroup>
+							  		<col style="width:10%"/>
+							  		<col style="width:90%" />
+							    </colgroup>
                         		<tbody>
 	                        		<tr>
-	                        			<td>제목 : </td>
-	                        			<td>안녕하세요 투밀 운영진입니다.</td>
+	                        			<td colspan="2" style="padding:10px;background-color:#E6E6E6;">
+	                        				<b>안녕하세요 투밀 운영진입니다.</b>
+	                        			</td>
 	                        		</tr>
 	                        		<tr>
-	                        			<td><hr></td>
-	                        			<td><hr></td>
-	                        		</tr>
+	                        			<br>
+	                        			<td colspan="2" style="padding:10px;">
+	                        				<span>이욱재</span>
+	                        				<span style="margin-right:15px;margin-left:15px">|</span>
+	                        				<span>2022.03.27 20:01</span>
+	                        				<hr>
+	                        			</td>
+	                        		</tr>	                        			                        		
 	                        		<tr>
-	                        			<td>작성자 : </td>
-	                        			<td>이욱재</td>
-	                        		</tr>
-	                        		<tr>
-	                        			<td><hr></td>
-	                        			<td><hr></td>
-	                        		</tr>	                        		
-	                        		<tr>
-	                        			<td>내용 </td>
-	                        		</tr>
-	                        		<tr>
-	                        			<td><hr></td>
-	                        			<td><hr></td>
-	                        		</tr>	                        		
-	                        		<tr>
-	                        			<td>아아아아아아아앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아ㅏㅏㅏ</td>
+	                        			<td colspan="2">
+	                        				<div style="height:50vh;">
+	                        				암ㄴ암ㄴ암ㄴ안아아아아아아아아아아아아아아아아아아아아아아아아ㅏㅇ아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아앙아아
+	                        				</div>
+	                        			</td>
 	                        		</tr>                 			
                         		</tbody>
 
