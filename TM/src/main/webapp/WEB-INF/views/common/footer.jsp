@@ -88,6 +88,67 @@
     font-size: 13px;
   }
   
+  
+/* 관리자 */
+
+.main {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+#login {
+    width: 100%;
+    background-color: gray;
+    border-color: transparent;
+    color: white;
+}
+
+.account {
+    display: block;
+    margin-bottom: 3px;
+    padding: 3px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+#alert {
+    border-color: transparent;
+}
+
+#Btn_open {
+    cursor: pointer;
+}
+
+.modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_overlay2 {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.hidden2 {
+    display: none;
+}
+
+/* 관리자끝 */
+  
   /* footer 끝 */
 </style>
 </head>
@@ -109,6 +170,9 @@
             <li class="division">
               <a href="#">이용약관</a>
             </li>
+            <li class="division">
+              <a id="Btn_open">관리자</a>
+            </li>
           </ul>
         </div>
         <div class="row1 row">
@@ -118,7 +182,6 @@
           <span class="global-notice store_footer_notice"></span>
         </div>
       </div>
-      <button id="Btn_open">관리자</button>
     </footer>
 </body>
 </html>

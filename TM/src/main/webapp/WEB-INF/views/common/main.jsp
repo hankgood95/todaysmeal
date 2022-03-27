@@ -39,6 +39,7 @@ div {
 /* right side */
 
 #container .right_content {
+  margin-left: 20px;
   min-height: 500px; 
 }
 
@@ -239,72 +240,6 @@ ol#box_list li:before {
 }
 
 /* modal끝 */
-
-/* 관리자 */
-
-.main {
-    width: 250px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-}
-
-#login {
-    width: 100%;
-    background-color: gray;
-    border-color: transparent;
-    color: white;
-}
-
-.account {
-    display: block;
-    margin-bottom: 3px;
-    padding: 3px;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-}
-
-#alert {
-    border-color: transparent;
-}
-
-#Btn_open {
-    all: unset;
-    background-color: black;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 5px;
-}
-
-.modal2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal_overlay2 {
-    background-color: rgba(0, 0, 0, 0.6);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
-.hidden2 {
-    display: none;
-}
-
-/* 관리자끝 */
 
 /* 투표완료풍선 */
 
