@@ -16,7 +16,8 @@
 	border-color: #93a1a1;
 	border-spacing: 0;
 	margin-top: 40px;
-	width: 100%;
+	margin-left: 35px;
+	width: 90%;
 }
 
 .tg td {
