@@ -97,8 +97,8 @@
                         		<c:param name="noticeNum" value="noticeNum"/>
                         	</c:url>
                         	<button type="button" class="btn btn-primary" style="float:right; margin-left:10px" onclick="location.href='${nUpdate}'">수정하기</button>
-							<button type="button" class="btn btn-secondary" style="float:right; margin-left:10px" onclick="backToList()">목록으로</button>
-							<button type="button" class="btn btn-danger"style="float:right;" onclick="deleteNotice()">삭제하기</button>
+							<button type="button" class="btn btn-danger"style="float:right; margin-left:10px" onclick="deleteNotice()">삭제하기</button>
+							<button type="button" class="btn btn-secondary" style="float:right;" onclick="backToList()">목록으로</button>
                         </div>
                     </div>
 
