@@ -272,8 +272,6 @@ ol#box_list li:before {
     border-color: transparent;
 }
 
-/* 추가 */
-
 #Btn_open {
     all: unset;
     background-color: black;
@@ -307,6 +305,61 @@ ol#box_list li:before {
 }
 
 /* 관리자끝 */
+
+/* 투표완료풍선 */
+
+.bubble 
+	{
+        z-index:100;
+        position: relative;
+        height: auto;
+        padding: 10px 10px 10px 10px;
+        background: #0A6EFF;
+        color: white;
+        border-radius: 5px;
+        border: #7F7F7F solid 1px;
+        position: absolute;
+        font-size: 15px;
+        text-align: left;
+        margin-top: -40px;
+        width: 100%;
+        text-align: center;
+	}
+	
+	.bubble:after 
+	{
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 0 16px 20px 17.5px;
+        border-color: #0A6EFF transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        top: -18.5px; 
+        left: 49px; 
+	}
+	
+	.bubble:before 
+	{
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 0 16px 20px 17.5px;
+        border-color: #7F7F7F transparent;
+        display: block;
+        width: 0;
+        z-index: 0;
+        top: -20px;
+        left: 49px;
+	}
+
+  .bubble_hidden {
+    display: none;
+  }
+
+
+/* 투표완료풍선끝 */
 
 </style>
 
@@ -347,6 +400,7 @@ ol#box_list li:before {
                 <h3 class="tit2">투밀 3주차 음식 투표 결과</h3>
                 <h4 class="tit2_s">짜장 vs 짬뽕</h4>
                 <button id="Btn_0">투표하기</button>
+                <div class="bubble bubble_hidden">투표가 완료되었습니다.</div>
                 <div class="vote_bar"></div>
                 <div class="vote_member"></div>
               </div>
@@ -383,6 +437,7 @@ ol#box_list li:before {
     </div>
     <script defer src="${pageContext.servletContext.contextPath}/resources/main/js/login.js"></script>
     <script defer src="${pageContext.servletContext.contextPath}/resources/main/js/vote.js"></script>
+    <script defer src="${pageContext.servletContext.contextPath}/resources/main/js/ballon.js"></script>
 </body>
 </body>
 </html>
