@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- Appenders : 전달 된 로그를 어디에 출력할지 결정(콘솔, 파일, DB 등) -->
+	<!-- ConsoleAppender : 로그를 콘솔에 출력하기 위한 Appender -->
+	<appender name="console"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<!-- 로그 출력 패턴 지정 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	<!-- 2_2. 별도의 패턴을 적용한 콘솔 출력용 appender : myConsole 작성 -->
+	<appender name="myConsole"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<!-- layout 지정 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- 패턴 참조하며 비교 -->
+			<param name="ConversionPattern"
+				value="%d{yy-MM-dd HH:mm:ss} [%p] %c{1}.%M{%L} - %m%n" />
+		</layout>
+	</appender>
+	<!-- 3. 날짜별 로그인 로그 파일 생성하기 -->
+	<appender name="myDailyRollingFile"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 로그 파일 생성 위치 (C 드라이브 하위의 절대 경로로 지정 된다) -->
+		<param name="File" value="/logs/member/login.log" />
+		<!-- 이어쓰기 설정 (false는 이어쓰기 불가) -->
+		<param name="Append" value="true" />
+		<!-- 로그 파일 문자 인코딩 -->
+		<param name="encoding" value="UTF-8" />
+		<!-- 파일명에 입력 될 날짜 패턴(다음 날 이전 날의 파일명에 추가 된다) -->
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+		<!-- layout 지정 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yy-MM-dd HH:mm:ss} [%p] %c{1}.%M{%L} - %m%n" />
+		</layout>
+	</appender>
+	<!-- 실습 : 기존 메소드에 logger 추가해서 사용하기 'DEBUG:BoardController.boardInsert{90} 
+		- XXX(제목)의 새글 등록!' 이라는 로그가 콘솔에 출력 되도록 하세요 조건 : 새 Appender 추가, 중복 로깅 출력되지 
+		않도록 하기 -->
+	<!-- 실습. 콘솔 출력용 appender : myConsole2 작성 -->
+	<appender name="myConsole2"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p:%c{1}.%M{%L} - %m%n" />
+		</layout>
+	</appender>
+	<!-- 6_3. appender 추가 -->
+	<appender class="org.apache.log4j.ConsoleAppender"
+		name="sqlLogger">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p : %m%n" />
+		</layout>
+	</appender>
+	
+	
+	
+	<!-- 실습. BoardController 용 logger -->
+	<logger name="com.kh.spring.board.controller.BoardController"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="myConsole2" />
+	</logger>
+	<!-- 1_1. log 패키지 만들어서 Log4jTest 클래스를 만들기 -->
+	<logger name="com.kh.spring.log.Log4jTest">
+		<level value="trace" />
+		<!-- 1_2. level 변경 테스트 -->
+		<appender-ref ref="console" />
+		<!-- 1_3. 중복 로깅 테스트 -->
+	</logger>
+	<!-- appender-ref를 지정하면 name에 지정한 패키지에 속한 클래스에서 먼저 발생하고 rootLogger에 전달되어 
+		다시 출력 된다. appender-ref를 지정하지 않으면 root로 보내줘서 실행한다. additivity가 false인 경우 부모(rootLogger)로 
+		전달하지 않음(기본 값 true) 단, false인 경우 appender-ref를 지정해주지 않으면 안된다. -->
+	<!-- 2. MemberController 용 logger -->
+	<logger name="com.kh.spring.member.controller.MemberController"
+		additivity="false">
+		<level value="debug" />
+		<!-- 새로운 Appender인 myConsole appender를 추가하여 사용 -->
+		<appender-ref ref="myConsole" />
+		<!-- 날짜별로 파일 출력 추가 -->
+		<appender-ref ref="myDailyRollingFile" />
+	</logger>
+	<!-- 4. LoggerInterceptor용 logger -->
+	<logger
+		name="com.kh.spring.common.interceptor.LoggerInterceptor"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<!-- 5. LoginInterceptor용 logger -->
+	<logger name="com.kh.spring.common.interceptor.LoginInterceptor"
+		additivity="false">
+		<level value="info" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<!-- 
+		6. log4jdbc remix DB에 요청하는 쿼리문과 쿼리 결과를 로그에서 확인할 수 있는 라이브러리 
+		(다만 mybatis rowbounds를 이용하는 경우 logger에 출력되지 않음) 
+		6_1. log4jdbc-remix 라이브러리 추가(pom.xml) 
+		6_2. log4jdbc-remix 관련 dataSource 처리 (root-context.xml) 기존 dataSource bean을 
+		이용해서 proxyDataSource를 만든다 
+		6_3. appender 추가, Query logger 추가 
+	-->
+	<!-- Query Loggers -->
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="sqlLogger"/>
+	</logger>
+	
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="sqlLogger"/>
+	</logger>
+	
+	<!-- Application Loggers -->
+	<logger name="com.kh.spring">
+		<level value="info" />
+	</logger>
+	<!-- 3rdparty Loggers : framework 실행 시 세팅되는 부분들의 로그 출력 -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	<!-- Root Logger : 모든 자식 logger 들의 로깅 출력이 rootLogger를 통해서 이루어진다. -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>

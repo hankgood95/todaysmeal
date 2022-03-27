@@ -29,6 +29,17 @@
 	            $(document).ready(function() {
 	                $("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
 	            });
+	            
+	            function backToList(){
+	            	window.history.back();
+	            }
+	            function gotoUpdate(){
+	            	alert("수정 가즈아!!");
+	            }
+	            function deleteNotice(){
+	            	alert("삭제할꼬얌!!");
+	            	window.history.back();
+	            }
     		</script>
 		</c:if>	 
         <!-- Content Wrapper -->
@@ -80,6 +91,9 @@
                         		</tbody>
 
                         	</table>
+                        	<button type="button" class="btn btn-primary" style="float:right; margin-left:10px" onclick="gotoUpdate()">수정하기</button>
+							<button type="button" class="btn btn-secondary" style="float:right; margin-left:10px" onclick="backToList()">목록으로</button>
+							<button type="button" class="btn btn-danger"style="float:right;" onclick="deleteNotice()">삭제하기</button>
                         </div>
                     </div>
 
