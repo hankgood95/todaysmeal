@@ -40,7 +40,8 @@
             </div> -->
 
 		<!-- 네비 아이템  드롭다운 형식 -->
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item">
+		<a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseTwo"
 			aria-expanded="true" aria-controls="collapseTwo"> <!-- font awesome에서 아이콘을 가져옴 -->
 				<i class="fas fa-fw fa-flag"></i> <span>신고관리</span>
