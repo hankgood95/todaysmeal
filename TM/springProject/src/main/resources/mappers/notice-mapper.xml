@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+	<resultMap id="noticeResultSet" type="Notice">
+		<id property="nId" column="NID"/>
+		<result property="nTitle" column="NTITLE"/>
+		<result property="nWriter" column="NWRITER"/>
+		<result property="nContent" column="NCONTENT"/>
+		<result property="nCreateDate" column="N_CREATE_DATE"/>
+		<result property="nModifyDate" column="N_MODIFY_DATE"/>
+		<result property="filePath" column="FILE_PATH"/>
+	</resultMap>
+	
+	<select id="selectList" resultMap="noticeResultSet">
+		SELECT * 
+		FROM NOTICE
+		ORDER BY NID DESC
+	</select>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO NOTICE VALUES(
+			SEQ_NID.NEXTVAL, #{nTitle}, #{nWriter}, #{nContent}, SYSDATE, SYSDATE, #{filePath} 
+		)
+	</insert>
+	
+	<select id="selectOne" parameterType="_int" resultMap="noticeResultSet">
+		SELECT *
+		FROM NOTICE
+		WHERE NID=#{nId}
+	</select>
+	
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE NOTICE
+		SET NTITLE=#{nTitle},
+			NCONTENT=#{nContent},
+			FILE_PATH=#{filePath},
+			N_MODIFY_DATE = SYSDATE
+		WHERE NID=#{nId}
+	</update> 
+	
+	<delete id="deleteNotice" parameterType="_int">
+		DELETE FROM NOTICE
+		WHERE NID=#{nId}
+	</delete>
+	
+	<!-- 공지사항 검색용 쿼리 (마이바티스 동적 쿼리 사용) -->
+	<select id="searchList" parameterType="Search" resultMap="noticeResultSet">
+		<bind name="sv" value="'%' + _parameter.getSearchValue() + '%'"/>
+		SELECT * FROM NOTICE
+		<where>
+			<if test="existFile != null">
+				FILE_PATH IS NOT NULL
+			</if>
+			<choose>
+				<when test="searchCondition == 'title'">
+					AND NTITLE LIKE #{sv}
+				</when>
+				<when test="searchCondition == 'writer'">
+					AND NWRITER LIKE #{sv}
+				</when>
+				<when test="searchCondition == 'content'">
+					AND NCONTENT LIKE #{sv}
+				</when>
+				<otherwise>
+					AND (NWRITER LIKE #{sv}
+					OR NTITLE LIKE #{sv}
+					OR NCONTENT LIKE #{sv})
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY NID DESC
+	</select>
+	
+	
+	
+	
+	
+	
+
+</mapper>

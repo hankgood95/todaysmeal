@@ -73,7 +73,7 @@
                         <div class="card-body" style="height:auto">
                         	<form>
                         		<div class="input-group input-group-lg">
-								  <div class="input-group-prepend">
+								  <div class="input-group-prepend" style="margin-bottom:10px">
 								    <span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 								  </div>
 								  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
