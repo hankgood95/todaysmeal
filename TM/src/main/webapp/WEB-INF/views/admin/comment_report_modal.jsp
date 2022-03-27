@@ -8,15 +8,15 @@
 	href="${pageContext.servletContext.contextPath}/resources/admin/css/admin_comment_modal.css"
 	rel="stylesheet">
 <style type="text/css">
+
 .tg {
  	width : 500px;
 	border: none;
 	border-collapse: collapse;
 	border-color: #93a1a1;
 	border-spacing: 0;
-	margin-left : 100px;
-	margin-top: 50px;
-	
+	margin-top: 40px;
+	width: 100%;
 }
 
 .tg td {
@@ -50,13 +50,14 @@
 	background-color: #eee8d5;
 	border-color: inherit;
 	text-align: left;
-	vertical-align: top
+	vertical-align: top;
+	word-break: break-all;
 }
 
 .tg .tg-c3ow {
 	border-color: inherit;
 	text-align: center;
-	vertical-align: top
+	vertical-align: top;
 }
 
 .tg .tg-0pky {
@@ -64,9 +65,10 @@
 	text-align: left;
 	vertical-align: top
 }
-.yellow-card {
+
+.green-card {
 	all: unset;
-	 background-color: green;
+	background-color: green;
     color: white;
     padding: 5px 20px;
     border-radius: 5px;
@@ -84,27 +86,15 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    margin-left: 10px;
 }
 
 .wrap-card {
-	display :flex;
-	
-		
+	margin-top: 50px;
+	text-align: center;
 }
 
-.yellow-card{
-	margin-left: 260px;
-	margin-top : 30px;
 
-
-}
-
-.red-card{
-	
-	margin-left : 20px;
-	margin-top : 30px;
-
-}
 
 #report-context {
 	height : auto;
@@ -113,6 +103,7 @@
 }
 </style>
 </head>
+
 <body>
 	<div id="modal" class="modal-overlay">
 		<div class="modal-window">
@@ -142,13 +133,13 @@
 						<td class="tg-c3ow" colspan="5">신고사유</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5" id="report-reason">ㅇㄴㅁ읜ㅁ읜ㅁ아ㅣㄴ무아ㅣㄴㅁ아ㅣㅜㄴ마우남우ㅏㅣㄴㅁ우마</td>
+						<td class="tg-2bhk" colspan="5" id="report-reason">ㅇㄴㅁ읜ㅁwqefqwefqㄴㅇㅁㄹㄴㅁㅇ54ㄹ6ㄴㅁㅇ4ㄹ56ㄴㅁㅇ4ㄹ56ㄴㅁ4ㅇㄹ56ㄴㅁㅇ4ㄹ56ㅁ4ㄴㅇ56ㄹ4ㄴㅁ56ㅇㄹ456wefqwefwqefqwfqweffeeeeeeesdfsdfdsfsdfsdfsdfsdfqweklfjwefㄴ아ㅓ리나어라ㅣㄴ어리ㅏㅇ나ㅓeee읜ㅁ아ㅣㄴ무아ㅣㄴㅁ아ㅣㅜㄴ마우남우ㅏㅣㄴㅁ우마</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class= "wrap-card">
-			<button class="yellow-card">경고</button>
-			<button class="red-card">블랙</button>
+				<button class="green-card">경고</button>
+				<button class="red-card">블랙</button>
 			</div>
 		</div>
 	</div>
