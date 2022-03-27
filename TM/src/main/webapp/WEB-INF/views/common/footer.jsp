@@ -9,7 +9,8 @@
 /* footer 시작 */
 
   #bot {
-    min-width: 627px;
+    max-width: 100%;
+    min-width: 622px;
   }
   
   footer {
@@ -117,6 +118,7 @@
           <span class="global-notice store_footer_notice"></span>
         </div>
       </div>
+      <button id="Btn_open">관리자</button>
     </footer>
 </body>
 </html>

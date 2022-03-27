@@ -6,6 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+h1 {
+  text-align:center;
+}
+
+div {
+  font-size: 30px;
+  text-align: center;
+}
+
+
 /* Main Layout */
 
 #container {
@@ -13,6 +23,8 @@
   grid-template-columns: 3fr 1fr;
   margin-left: 100px;
   margin-right: 100px;
+  margin-bottom: 17px;
+  max-width: 100%;
 }
 
 /* left side */
@@ -46,6 +58,7 @@
   border: 1px solid black;
   color: #333;
   height: 360px;
+  max-width: 100%;
 }
 
 .box_tit {
@@ -94,6 +107,38 @@
   top: -10px;
 }
 
+ul#box_list, ol#box_list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul#box_list li, ol#box_list li {
+  padding: 5px 0px 5px 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  border-bottom: 1px solid #efefef;
+  font-size: 12px;
+  
+}
+
+ul#box_list li:last-child,
+ol#box_list li:last-child {
+    border-bottom: 0px;
+}
+
+ul#box_list li:before,
+ol#box_list li:before {
+    content: "△";
+    display: inline-block;
+    padding: 0px 5px 6px 0px;
+    
+}
+
+#box_list {
+
+}
+
 .vote_bar {
 
 }
@@ -101,6 +146,7 @@
 .vote_member {
 
 }
+
 /* modal */
 
 #Btn_0 {
@@ -193,6 +239,75 @@
 }
 
 /* modal끝 */
+
+/* 관리자 */
+
+.main {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+#login {
+    width: 100%;
+    background-color: gray;
+    border-color: transparent;
+    color: white;
+}
+
+.account {
+    display: block;
+    margin-bottom: 3px;
+    padding: 3px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+#alert {
+    border-color: transparent;
+}
+
+/* 추가 */
+
+#Btn_open {
+    all: unset;
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 5px;
+}
+
+.modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_overlay2 {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.hidden2 {
+    display: none;
+}
+
+/* 관리자끝 */
+
 </style>
 
 </head>
@@ -255,6 +370,18 @@
         </div>
       </div>
     </div>
+    <div class="modal2 hidden2">
+      <div class="main modal_overlay2">
+        <div class="container">
+            <input type="text" placeholder="ID" id="id" class="account">
+            <input type="password" placeholder="Password" id="password" class="account">
+            <button id="login" class="account">login</button>
+            <p id="alert" class="account"></p>
+            <button class="Btn_close">창닫기</button>
+        </div>
+      </div>
+    </div>
+    <script defer src="${pageContext.servletContext.contextPath}/resources/main/js/login.js"></script>
     <script defer src="${pageContext.servletContext.contextPath}/resources/main/js/vote.js"></script>
 </body>
 </body>
