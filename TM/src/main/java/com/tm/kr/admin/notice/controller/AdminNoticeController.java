@@ -42,9 +42,11 @@ public class AdminNoticeController {
 		wook = new Member(1,"hankgood95","tomeal1234","빌게이","hankgood95@naver.com","이욱재",birth);
 		//notice라는 인스턴스에 위에서 만든 이욱재의 회원번호를 추가한다.
 		notice = new Notice(1,"가즈아","가즈아아아아아앙",new Date(),wook.getMemberNum(),wook.getName());
-		
 		//그리고 Notice의 정보를 담는 ArrayList를 만들어서 
 		ArrayList<Notice> noticeList = new ArrayList<>();
+		
+		//원래는 noticeList를 DB 연동해서 값들울 넣어야 함 하지만 일단 나는 여기다가 임의로 값을 넣음
+		
 		//noticeList에 이욱재가 쓴 notice 정보를 담는다.
 		noticeList.add(notice);
 		
