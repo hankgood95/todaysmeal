@@ -15,7 +15,7 @@
 	border-collapse: collapse;
 	border-color: #93a1a1;
 	border-spacing: 0;
-	margin-top: 40px;
+	margin-top: 80px;
 	margin-left: 35px;
 	width: 90%;
 }
@@ -91,7 +91,7 @@
 }
 
 .wrap-card {
-	margin-top: 50px;
+	margin-top: 80px;
 	text-align: center;
 }
 
@@ -115,7 +115,7 @@
 			<table class="tg">
 				<thead>
 					<tr>
-						<th class="tg-0pky" colspan="2">날짜</th>
+						<th class="tg-0pky" colspan="2" id= "date" style = width >날짜</th>
 						<th class="tg-0pky" colspan="3">2020.12.05</th>
 					</tr>
 				</thead>
@@ -128,19 +128,19 @@
 						<td class="tg-c3ow" colspan="5">댓글 내용</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5" id= "report-context">12342131231231321312312321311111111111111111111111111111111111111222222222222222222222222233333333333333</td>
+						<td class="tg-2bhk" colspan="5" id= "report-context">니 줫같이 생겼어 </td>
 					</tr>
 					<tr>
 						<td class="tg-c3ow" colspan="5">신고사유</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5" id="report-reason">ㅇㄴㅁ읜ㅁwqefqwefqㄴㅇㅁㄹㄴㅁㅇ54ㄹ6ㄴㅁㅇ4ㄹ56ㄴㅁㅇ4ㄹ56ㄴㅁ4ㅇㄹ56ㄴㅁㅇ4ㄹ56ㅁ4ㄴㅇ56ㄹ4ㄴㅁ56ㅇㄹ456wefqwefwqefqwfqweffeeeeeeesdfsdfdsfsdfsdfsdfsdfqweklfjwefㄴ아ㅓ리나어라ㅣㄴ어리ㅏㅇ나ㅓeee읜ㅁ아ㅣㄴ무아ㅣㄴㅁ아ㅣㅜㄴ마우남우ㅏㅣㄴㅁ우마</td>
+						<td class="tg-2bhk" colspan="5" id="report-reason">욕해서 신고함 </td>
 					</tr>
 				</tbody>
 			</table>
 			<div class= "wrap-card">
-				<button class="green-card">경고</button>
-				<button class="red-card">블랙</button>
+				<button class="green-card">신고 삭제</button>
+				<button class="red-card">댓글 삭제</button>
 			</div>
 		</div>
 	</div>

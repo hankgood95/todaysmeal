@@ -20,7 +20,7 @@
 }
 
 .title:hover {
-	text-shadow: -.25px -.25px 0 black, .25px .25px
+	text-shadow: -.25px -.25px 0 black, .25px .25px;
 }
 </style>
 
@@ -159,8 +159,5 @@
 
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/admin/js/datatables/datatables_set.js"></script>
-
-
-
 </body>
 </html>
