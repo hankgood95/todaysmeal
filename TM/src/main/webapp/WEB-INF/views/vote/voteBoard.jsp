@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Vote Board</title>
-<link href="${pageContext.request.contextPath}/resources/main/css/index.css" rel="stylesheet" type="text/css">
 
 <style>
 .td {
@@ -96,7 +95,7 @@
 }
 
 img {
-    width: 100%;
+	width: 100%;
     height: 200px;
 }
 
@@ -106,25 +105,22 @@ rect {
 </style>
 
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<link
+	href="${pageContext.servletContext.contextPath}/resources/bootstrap/css/bootstrap.css"
+	rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<!-- Header Include -->
-	<%@include file ="/WEB-INF/views/common/header.jsp"%>
+<!-- Header Include -->
+<%@include file ="/WEB-INF/views/common/header.jsp"%>
     
-    <!-- Card Section -->
+<!-- Card Section -->
 <section class="py-0">
     <div class="container px-4 px-lg-5 mt-5">
-    
         <div>
-			<p class="btn btn-dark d-md-flex justify-content-md-center" style="width:53%; margin: auto; font-size: 20px; text-align: center; font-weight: 100px; font-style: italic;"> 3월 셋째주 투표  </p>
-		</div>
-		
+		<p class="btn btn-dark d-md-flex justify-content-md-center" style="width: 500px; margin: auto; font-size: 20px; text-align: center; font-style: italic;"> 3월 셋째주 투표  </p>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        
-            <div class="col mb-5">
+            <div class="col mb-auto">
                 <div class="card h-60">
                     <!-- Product image-->
                     <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" alt="..." />
@@ -137,14 +133,14 @@ rect {
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"> 투표 </a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="./voteModal.jsp"> 투표 </a></div>
                     </div>
                 </div>
             </div>
-            <div style="line-height: 465px; width: 60px;">
-           		<p style="font-size: 30px; font-weight: 100px; text-align: center;">VS</p> 
+            <div style="width: 60px; height: 344px; line-height: 344px;">
+           		<p style="font-size: 30px;">VS</p> 
            	</div>
-            <div class="col mb-5">
+            <div class="col mb-auto">
                 <div class="card h-60">
                     <!-- Product image-->
                     <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/b.jpeg" alt="..." />
@@ -164,6 +160,7 @@ rect {
             <br>
             <div id="barchart_values" style="width: 650px; height: 100px; "></div>
   	     </div>
+  	     </div>
     </div>
 </section>
     
@@ -178,20 +175,13 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
     var data = google.visualization.arrayToDataTable([
         ['Genre', '짜장면', '짬뽕', { role: 'annotation' } ],
-        ['', 10, 24, ''],
-
+        ['', 1000, 24, ''],
       ]);
 	var view = new google.visualization.DataView(data);
-	view.setColumns([0, 1,
-	                 { calc: "stringify",
-	                   sourceColumn: 1,
-	                   type: "string",
-	                   role: "annotation" },
-	                 2]);
 	var options = {
 	  width: '100%',
-	  height: 70,
-	  legend: { position: 'top', maxLines: 3 },
+	  height: 100,
+	  legend: none,
 	  bar: { groupWidth: '75%' },
 	  isStacked: 'percent'
 	};
@@ -200,8 +190,8 @@ function drawChart() {
 }
 </script>
 	
-
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
+ </body>
 </html>
