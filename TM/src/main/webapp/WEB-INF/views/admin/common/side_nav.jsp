@@ -61,7 +61,7 @@
 		</a></li>
 
 		<!-- Nav Item - Tables -->
-		<li class="nav-item"><a class="nav-link" href="tables.html">
+		<li class="nav-item"><a class="nav-link" href="votelist">
 				<i class="fas fa-fw fa-vote-yea"></i> <span>투표 관리</span>
 		</a></li>
 
