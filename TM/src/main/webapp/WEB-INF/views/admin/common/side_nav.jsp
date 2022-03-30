@@ -56,7 +56,7 @@
 			</div></li>
 
 		<!-- Nav Item - Charts -->
-		<li class="nav-item"><a class="nav-link" href="adminNoticeList">
+		<li class="nav-item"><a class="nav-link" href="admin/notices">
 				<i class="fas fa-fw fa-bullhorn"></i> <span>공지사항 관리</span>
 		</a></li>
 

@@ -11,12 +11,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tm.kr.admin.notice.model.Notice;
 import com.tm.kr.member.model.Member;
 
 @Controller
+@RequestMapping("/admin/*") // 이걸 쓰지 않게 되면 관리자 페이지에서 들어오는 모든 uri요청의 모든 @RequestMapping에 /admin을 적어줘야 한다.그래서 그런 번거로움을 없애기 위해서 이와 같은 소스를 넣었다.
 public class AdminNoticeController {
 
 	Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
@@ -24,7 +29,7 @@ public class AdminNoticeController {
 	Notice notice;
 	
 	//Notice List로 이동하기 위한 부분
-	@RequestMapping(value = "adminNoticeList")
+	@RequestMapping(value = "notices")
 	public String adminNoticeList(Model model) {
 		logger.info("admin Notice page에 들어왔다.");
 		
@@ -63,17 +68,17 @@ public class AdminNoticeController {
 	}
 	
 	//새로운 notice 작성 페이지로 넘어가기 위해서
-	@RequestMapping(value="newnotice")
-	public String newNotice(Model model) {
+	@RequestMapping(value="new-notice")
+	public String newNoticePage(Model model) {
 		
 		//해당 페이지가 noticePage라는것을 알려주기 위해서 model에 pageName을 보낸다.
 		model.addAttribute("pageName", "noticePage");
 		
-		return "admin/new_notice";
+		return "admin/notice_form";
 	}
 	
 	//notice 상세보기를 보여주기 위해서
-	@RequestMapping(value="noticedetail")
+	@GetMapping(value="notice")
 	public String noticeDetail(HttpServletRequest request,Model model) {
 		
 		logger.info("admin Notice Detail Page에 들어왔다.");
@@ -90,8 +95,24 @@ public class AdminNoticeController {
 	}
 	
 	//notice update 화면으로 이동시켜주기 위해서
-	@RequestMapping(value="upNotice")
+	@RequestMapping(value="up-notice-page")
 	public String updateNotice(HttpServletRequest request,Model model) {
+		
+		logger.info("admin Notice update Page에 들어왔다.");
+		model.addAttribute("pageName", "noticePage");
+		
+		//받아온 noticeNum을 가지고 이제 DB 조회를 해서 notice를 가져오면 됨
+		String noticeNum = request.getParameter("noticeNum");
+		
+		logger.info("notice number is : "+noticeNum);
+		
+		//하지만 난 가져올 DB가 없으니 일단은 위에서 만든 notice를 보내줌
+		model.addAttribute("notice", notice);
+		return "admin/notice_form";
+	}
+	
+	@DeleteMapping(value="notice")
+	public String delNotice(HttpServletRequest request,Model model) {
 		
 		logger.info("admin Notice update Page에 들어왔다.");
 		model.addAttribute("pageName", "noticePage");
