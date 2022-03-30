@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!--  JSTL사용할때필요함 여기서는 c로 사용할것이다 prefix -->
-<!--  줄정렬 컨트롤 쉬프트 에 -->
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -22,22 +18,22 @@
 	text-shadow: -.25px -.25px 0 black, .25px .25px;
 	background-color : gray;
 }
+
 </style>
 
 <link
 	href="${pageContext.servletContext.contextPath}/resources/admin/css/dataTables.css"
 	rel="stylesheet">	
-
 </head>
 <body id="page-top">
-	<jsp:include page="common/jQuery.jsp" />
+<jsp:include page="common/jQuery.jsp" />
 	<jsp:include page="comment_report_modal.jsp" />
 
 
 	<!-- jQuery를 지웠는데 css가 사라지네 이해가안가노 css도아닌 -->
 	<div id="wrapper">
 		<jsp:include page="common/side_nav.jsp" />
-		<c:if test="${ pageName eq 'reportPage' }">
+		<c:if test="${ pageName eq 'reportPage'}">
 			<!--노티스페이지가 아니라 내가만든페이지 컨트롤러에서넘겨주는값을 적어야함  -->
 			<!-- 왜 빨간색이 뜨는거지?c를 인식못함  -->
 			<script>
@@ -71,7 +67,7 @@
 						<div class="card-header py-3"
 							style="display: flex; justify-content: space-between;">
 							<!-- 이걸로 공지사항 칸이 어케생기 -->
-							<h4 class="m-0 font-weight-bold text-primary">댓글 신고목록</h4>
+							<h4 class="m-0 font-weight-bold text-primary">게시물 신고목록</h4>
 						</div>
 						<div class="card-body" style="height: auto">
 							<div class="table-responsive">
@@ -80,7 +76,7 @@
 									<thead>
 										<tr>
 											<th id="date">날짜</th>
-											<th id="title-head">댓글 내용</th>
+											<th id="title-head">게시물 제목</th>
 										</tr>
 									</thead>
 									<tbody id="tbody">
@@ -159,5 +155,6 @@
 
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/admin/js/datatables/datatables_set.js"></script>
+
 </body>
 </html>

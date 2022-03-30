@@ -51,7 +51,7 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h6 class="collapse-header">신고 내용</h6>
 					<a class="collapse-item" href="admincommentreport">댓글</a> <a
-						class="collapse-item" href="cards.html">게시판 글</a>
+						class="collapse-item" href="adminboardreport">게시판 글</a>
 				</div>
 			</div></li>
 
@@ -61,7 +61,7 @@
 		</a></li>
 
 		<!-- Nav Item - Tables -->
-		<li class="nav-item"><a class="nav-link" href="tables.html">
+		<li class="nav-item"><a class="nav-link" href="votelist">
 				<i class="fas fa-fw fa-vote-yea"></i> <span>투표 관리</span>
 		</a></li>
 

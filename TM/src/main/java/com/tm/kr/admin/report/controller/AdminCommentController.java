@@ -15,10 +15,16 @@ public class AdminCommentController {
 	Logger logger = LoggerFactory.getLogger(AdminCommentController.class); //나중에 로그를찍게 되는일이있다면 여기가 왜 바뀌었는지 다시물어보자.매개변수 물어보면댐 왜이거인
 	
 	@RequestMapping(value = "admincommentreport") //uri?
-	public String adminCommentreport(Model model) {
+	public String adminCommentReport(Model model) {
 		logger.info("admin Comment Report page에 들어왔다.");
 		model.addAttribute("pageName", "reportPage"); //왼쪽 => jsp로 보낼값 즉 키값, 페이지네임이라는 변수 에 리포트페이지를넣는다 
 		return "admin/comment_report_list";
+	}
+	@RequestMapping(value = "adminboardreport")
+	public String adminBoardReport(Model model) {
+		logger.info("admin Board Report page에 들어왔다.");
+		model.addAttribute("pageName", "boardPage");
+		return "admin/board_report_list";
 	}
 
 }
