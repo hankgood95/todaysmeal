@@ -27,7 +27,7 @@
 		<hr class="sidebar-divider my-0">
 
 		<!-- Nav Item - Dashboard -->
-		<li class="nav-item"><a class="nav-link" href="admin">
+		<li class="nav-item"><a class="nav-link" href="home">
 				<i class="fas fa-fw fa-tachometer-alt"></i> <span>대쉬보드</span>
 		</a></li>
 
@@ -56,7 +56,7 @@
 			</div></li>
 
 		<!-- Nav Item - Charts -->
-		<li class="nav-item"><a class="nav-link" href="admin/notices">
+		<li class="nav-item"><a class="nav-link" href="notices">
 				<i class="fas fa-fw fa-bullhorn"></i> <span>공지사항 관리</span>
 		</a></li>
 
