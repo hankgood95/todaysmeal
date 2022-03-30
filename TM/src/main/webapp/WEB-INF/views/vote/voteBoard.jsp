@@ -6,104 +6,6 @@
 <meta charset="UTF-8">
 <title>Vote Board</title>
 
-<style>
-.td {
-	vertical-align: middle;
-}
-
-.num {
-	width: 30px;
-}
-
-.name {
-	width: 30px;
-}
-
-.subject {
-	width: 120px;
-}
-
-.regdate {
-	width: 50px;
-}
-
-.hitcount {
-	width: 50px;
-}
-
-.thumb {
- 	width: 10px;
-}
-
-.titlediv {
-	width: 800px;
-	margin: auto;
-}
-
-.itemdiv {
-	left: 50%;
-	top: 50%;
-	width: 50%;
-	
-}
-
-.navbar {
-	justify-content: center;
-	width: 50%;
-}
-
-
-.paging {
-	float: left;
-	width: 50%;
-	text-align: center;
-}
-
-.paging-body {
-	display:inline-block;
-	position: absolute;
-}
-
-.pagination > li > a
-{
-    background-color: white;
-    color: #df4759;
-    border-color: #df4759;
-}
-
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #df4759;
-    background-color: #eee;
-    border-color: #df4759;
-}
-
-.pagination > .active > a
-{
-    color: #df4759;
-    background-color: #df4759 !Important;
-    border: solid 1px #df4759 !Important;
-}
-
-.pagination > .active > a:hover
-{
-    background-color: #df4759 !Important;
-    border: solid 1px #df4759;
-}
-
-img {
-	width: 100%;
-    height: 200px;
-}
-
-rect {
-	margin: auto;
-}
-</style>
-
 <!-- Bootstrap CSS -->
 <link
 	href="${pageContext.servletContext.contextPath}/resources/bootstrap/css/bootstrap.css"
@@ -115,54 +17,18 @@ rect {
 <%@include file ="/WEB-INF/views/common/header.jsp"%>
     
 <!-- Card Section -->
-<section class="py-0">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div>
-		<p class="btn btn-dark d-md-flex justify-content-md-center" style="width: 500px; margin: auto; font-size: 20px; text-align: center; font-style: italic;"> 3월 셋째주 투표  </p>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-auto">
-                <div class="card h-60">
-                    <!-- Product image-->
-                    <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">짜장면</h5>
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="./voteModal.jsp"> 투표 </a></div>
-                    </div>
-                </div>
-            </div>
-            <div style="width: 60px; height: 344px; line-height: 344px;">
-           		<p style="font-size: 30px;">VS</p> 
-           	</div>
-            <div class="col mb-auto">
-                <div class="card h-60">
-                    <!-- Product image-->
-                    <img class="img" src="${pageContext.servletContext.contextPath}/resources/vote/img/b.jpeg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">짬뽕</h5>
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"> 투표 </a></div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div id="barchart_values" style="width: 650px; height: 100px; "></div>
-  	     </div>
-  	     </div>
-    </div>
-</section>
+<div class="card mb-3" style="width: 800px; margin: auto;">
+	<p class="btn btn-dark d-md-flex justify-content-md-center" style="font-size: 30px; text-align: center; font-style: italic;"> 깻잎 논쟁  </p>
+	<img src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" class="card-img-top" alt="...">
+	<div class="card-body">
+		<p class="card-text" style="text-align: center; font-size: 25px">깻잎절임을 못 떼는 내 친구를 위해 깻잎지를 눌러주는 나의 연인. 당신은 이러한 행동을 이해할 수 있나요?</p>
+		<div id="barchart_values" style="margin: auto; height: 100px; "></div>
+		<div class="text-center">
+			<input class="btn btn-outline-dark mt-auto" type="button" value="찬성" onclick="agree();">
+			<input class="btn btn-outline-dark mt-auto" type="button" value="반대" onclick="disagree();"></input>
+		</div>
+	</div>
+</div>
     
 <!-- Footer Include -->
 <%@include file ="/WEB-INF/views/common/footer.jsp"%>
@@ -174,20 +40,47 @@ google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
     var data = google.visualization.arrayToDataTable([
-        ['Genre', '짜장면', '짬뽕', { role: 'annotation' } ],
-        ['', 1000, 24, ''],
+        ['Genre', '찬성', '반대', { role: 'annotation' } ],
+        ['', 10, 24, ''],
+
       ]);
+
 	var view = new google.visualization.DataView(data);
+	view.setColumns([0, 1,
+	                 { calc: "stringify",
+	                   sourceColumn: 1,
+	                   type: "string",
+	                   role: "annotation" },
+	                 2]);
 	var options = {
-	  width: '100%',
-	  height: 100,
-	  legend: none,
+	  width: '80%',
+	  height: 70,
+	  legend: 'none',
 	  bar: { groupWidth: '75%' },
 	  isStacked: 'percent'
 	};
 	var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
 	chart.draw(view, options);
 }
+  
+</script>
+
+<!-- Vote agree or disagree JS -->
+<script>
+	function agree() {
+		if (confirm("찬성하시겠습니까?"))
+			alert("확인 눌렀다~~~~");
+		else
+			alert("취소 눌렀다~~~~");
+		return ;
+	}
+	function disagree() {
+		if (confirm("반대하시겠습니까?"))
+			alert("확인 눌렀다~~~~");
+		else
+			alert("취소 눌렀다~~~~");
+		return ;
+	}
 </script>
 	
 <!-- Bootstrap JS -->
