@@ -72,7 +72,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;justify-content: space-between;">
-                            <h4 class="m-0 font-weight-bold text-primary">논란 투표 목록</h4>
+                            <h4 class="m-0 font-weight-bold text-primary">투표 목록</h4>
                             <button type="button" id="write" class="btn btn-primary">투표 주제 올리기</button>
                         </div>
                         
@@ -111,7 +111,7 @@
                                     <script>
 								    	$(document).ready(function(){
 								    		$(".gotoVoteDetail").click(function(){
-								    			alert("시발년아");
+								    			location.href="voteDetail";
 								    		});
 								    	});
 								    </script>
