@@ -16,10 +16,19 @@ public class AdminVoteController {
 	@RequestMapping("votelist")
 	public String voteList(Model model) {
 		
-		logger.info("admin vote page에 들어왔다.");
+		logger.info("admin vote list page에 들어왔다.");
 		
 		model.addAttribute("pageName", "votePage");
 		
 		return "admin/vote_list";
+	}
+	@RequestMapping("voteDetail")
+	public String voteDetail(Model model) {
+		
+		logger.info("admin vote detail page에 들어왔다.");
+		
+		model.addAttribute("pageName", "votePage");
+		
+		return "admin/vote_detail";
 	}
 }
