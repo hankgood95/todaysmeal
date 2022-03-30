@@ -36,11 +36,11 @@
 	            }
 	            function gotoUpdate(){
 	            	alert("수정 가즈아!!");
-	            	location.href="upNotice"
 	            }
 	            function deleteNotice(){
-	            	alert("삭제할꼬얌!!");
-	            	window.history.back();
+	            	if(confirm("정말로 삭제하시겠습니까??")){
+	            		alert("여기서 이제 controller 갔다가 온다!")
+	            	}
 	            }
     		</script>
 		</c:if>	 
@@ -95,7 +95,7 @@
                         	</table>
                         	<c:url var="nUpdate" value="upNotice">
                         		<c:param name="noticeNum" value="noticeNum"/>
-                        	</c:url>
+                        	</c:url>                        	
                         	<button type="button" class="btn btn-primary" style="float:right; margin-left:10px" onclick="location.href='${nUpdate}'">수정하기</button>
 							<button type="button" class="btn btn-danger"style="float:right; margin-left:10px" onclick="deleteNotice()">삭제하기</button>
 							<button type="button" class="btn btn-secondary" style="float:right;" onclick="backToList()">목록으로</button>
