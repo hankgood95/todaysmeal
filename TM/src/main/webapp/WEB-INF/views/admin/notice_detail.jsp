@@ -34,14 +34,6 @@
 	            function backToList(){
 	            	window.history.back();
 	            }
-	            function gotoUpdate(){
-	            	alert("수정 가즈아!!");
-	            }
-	            function deleteNotice(){
-	            	if(confirm("정말로 삭제하시겠습니까??")){
-	            		alert("여기서 이제 controller 갔다가 온다!")
-	            	}
-	            }
     		</script>
 		</c:if>	 
         <!-- Content Wrapper -->
@@ -93,12 +85,22 @@
                         		</tbody>
 								
                         	</table>
-                        	<c:url var="nUpdate" value="upNotice">
-                        		<c:param name="noticeNum" value="noticeNum"/>
+                        	<c:url var="nUpdate" value="up-notice-page">
+                        		<c:param name="noticeNum" value="${notice.notice_num}"/>
                         	</c:url>                        	
                         	<button type="button" class="btn btn-primary" style="float:right; margin-left:10px" onclick="location.href='${nUpdate}'">수정하기</button>
 							<button type="button" class="btn btn-danger"style="float:right; margin-left:10px" onclick="deleteNotice()">삭제하기</button>
 							<button type="button" class="btn btn-secondary" style="float:right;" onclick="backToList()">목록으로</button>
+							
+							<script>
+								
+				            function deleteNotice(){
+				            	if(confirm("정말로 삭제하시겠습니까??")){
+									alert("일단 지금 다 고쳐야 함");
+				            	}
+				            }
+								
+							</script>
                         </div>
                     </div>
 

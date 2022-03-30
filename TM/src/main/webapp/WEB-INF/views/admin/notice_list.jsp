@@ -40,7 +40,7 @@
 	            	$("#accordionSidebar").children(".nav-item").eq(2).addClass("active");
 	                //글쓰기 버튼 클릭시 화면 이동
 	                $("#write").click(function(){
-	                	location.href="newnotice"
+	                	location.href="new-notice"
 	                });
 	            });
     		</script>
@@ -83,7 +83,7 @@
 	                                    				<td class="title">${notice.title}</td>
 	                                    				<td>${notice.writer}</td>                            				
                                     				</tr>
-                                    				<c:url var="nDetail" value="noticedetail">
+                                    				<c:url var="nDetail" value="notice">
                                     					<c:param name="noticeNum" value="${ notice.notice_num }"/>
                                     				</c:url>
                                     				<script>
