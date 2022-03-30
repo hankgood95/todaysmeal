@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tm.kr.admin.notice.controller.AdminNoticeController;
 
 @Controller
+@RequestMapping("/admin/*")
 public class AdminVoteController {
 	
 	Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
