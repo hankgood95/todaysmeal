@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tm.kr.admin.notice.model.Notice;
 import com.tm.kr.member.model.Member;
@@ -71,6 +72,7 @@ public class AdminNoticeController {
 	@RequestMapping(value="new-notice")
 	public String newNoticePage(Model model) {
 		
+		logger.info("admin Notice 작성 Page에 들어왔다.");
 		//해당 페이지가 noticePage라는것을 알려주기 위해서 model에 pageName을 보낸다.
 		model.addAttribute("pageName", "noticePage");
 		
@@ -111,10 +113,35 @@ public class AdminNoticeController {
 		return "admin/notice_form";
 	}
 	
+	//Notice 새로 저장하게 될때 진입하게 되는 부분
+	@RequestMapping(value="notice", method=RequestMethod.POST)
+	public String insertNotice(@RequestParam("title") String title) {
+		
+		logger.info("Notice Title : "+ title);
+		
+		logger.info("New Notice is ready to save");
+		
+		return "redirect:notices"; //notices로 다시 리디렉트 시켜준다.
+	}
+	
+	//Notice  수정하게 될떄 진입하게 되는 부분
+	//지금 여기로 들어오고 있지 않음 어째서 일까 안되는 이유를 찾았음 jsp에서 무조건 method를 post로 하고 제출을 해줘야 함
+	@PutMapping(value="notice")
+	public String updateNotice(@RequestParam("title") String title) {
+		
+		logger.info("Notice Title : "+ title);
+		
+		logger.info("Notice is ready to update");
+		
+		return "redirect:notices"; //notices로 다시 redirect 시켜준다.
+	}
+	
+	//Notice 삭제하게 될떄 진입하는 부분
 	@DeleteMapping(value="notice")
 	public String delNotice(HttpServletRequest request,Model model) {
 		
-		logger.info("admin Notice update Page에 들어왔다.");
+		logger.info("Notice is ready to delete");
+		
 		model.addAttribute("pageName", "noticePage");
 		
 		//받아온 noticeNum을 가지고 이제 DB 조회를 해서 notice를 가져오면 됨
