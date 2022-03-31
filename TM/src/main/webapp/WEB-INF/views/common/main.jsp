@@ -363,7 +363,7 @@ ol#box_list li:before {
       <div class="main modal_overlay2">
         <div class="container">
             <input type="text" placeholder="ID" id="id" class="account">
-            <input type="password" placeholder="Password" id="password" class="account">
+            <input type="password" placeholder="Password" id="password" class="account" onkeyup="enterkey()">
             <button id="login" class="account">login</button>
             <p id="alert" class="account"></p>
             <button class="Btn_close">창닫기</button>
