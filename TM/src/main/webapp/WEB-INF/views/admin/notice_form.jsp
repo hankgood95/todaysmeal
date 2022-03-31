@@ -87,7 +87,7 @@
 											<input name="title" type="text" class="form-control" aria-label="Large"
 												aria-describedby="inputGroup-sizing-sm">
 										</div>
-										<div id="summernote"></div>
+										<textarea id="summernote" name="content"></textarea>
 										<button class="btn btn-primary margin-top"
 											style="margin-left: 15px" onclick="newNotice();">저장</button>
 										<button type="button" class="btn btn-secondary margin-top"
@@ -106,7 +106,7 @@
 												aria-describedby="inputGroup-sizing-sm"
 												value="${notice.title }">
 										</div>
-										<div id="summernote">${ notice.content }</div>
+										<textarea id="summernote" name="content">${ notice.content }</textarea>
 										<button class="btn btn-primary margin-top"
 											style="margin-left: 15px" onclick="updateNotice();">저장</button>
 										<button type="button" class="btn btn-secondary margin-top"
