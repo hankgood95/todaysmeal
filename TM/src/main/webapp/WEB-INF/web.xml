@@ -30,17 +30,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- http 메소드 사용을 위한 filter -->
-	<filter>
-		<filter-name>httpMethodFilter</filter-name> 
-		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class> 
-	</filter> 
-	
-	<filter-mapping> 
-		<filter-name>httpMethodFilter</filter-name> 
-		<url-pattern>/*</url-pattern> 
-	</filter-mapping>
-	<!-- form 데이터 한글 인코딩을 위한 filter -->
+	<!-- 한글 인코딩을 위한 filter 이부분이 무조건 위에 있어줘야 함 이걸 아래 httpMethod filter보다 아래에 있어서 적용이 안됐던거였음 -->
 	<filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>
@@ -54,6 +44,17 @@
 	<filter-mapping>
 	        <filter-name>encodingFilter</filter-name>
 	        <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- http 메소드 사용을 위한 filter -->
+	<filter>
+		<filter-name>httpMethodFilter</filter-name> 
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class> 
+	</filter> 
+	
+	<filter-mapping> 
+		<filter-name>httpMethodFilter</filter-name> 
+		<url-pattern>/*</url-pattern> 
 	</filter-mapping>
 
 </web-app>

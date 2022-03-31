@@ -115,9 +115,10 @@ public class AdminNoticeController {
 	
 	//Notice 새로 저장하게 될때 진입하게 되는 부분
 	@RequestMapping(value="notice", method=RequestMethod.POST)
-	public String insertNotice(@RequestParam("title") String title) {
+	public String insertNotice(@RequestParam("title") String title,@RequestParam("content") String content) {
 		
 		logger.info("Notice Title : "+ title);
+		logger.info("Notice Content : "+ content);
 		
 		logger.info("New Notice is ready to save");
 		
@@ -127,9 +128,10 @@ public class AdminNoticeController {
 	//Notice  수정하게 될떄 진입하게 되는 부분
 	//지금 여기로 들어오고 있지 않음 어째서 일까 안되는 이유를 찾았음 jsp에서 무조건 method를 post로 하고 제출을 해줘야 함
 	@PutMapping(value="notice")
-	public String updateNotice(@RequestParam("title") String title) {
+	public String updateNotice(@RequestParam("title") String title, @RequestParam("content") String content) {
 		
 		logger.info("Notice Title : "+ title);
+		logger.info("Notice Content : "+ content);
 		
 		logger.info("Notice is ready to update");
 		
