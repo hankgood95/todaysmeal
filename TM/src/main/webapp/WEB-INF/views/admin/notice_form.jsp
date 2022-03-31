@@ -21,7 +21,6 @@
 <script>
 		function newNotice(){
 			alert("새로 공지사함  저장할꼬얌!!");
-			window.history.back();
 		}
     	function cancel(){
     		if(confirm("작성한 내용을 정말 취소하시겠습니까??")){
@@ -30,7 +29,6 @@
     	}
     	function updateNotice(){
     		alert("공지사항 수정 할꼬얌!!");
-    		window.history.back();
     	}
     </script>
 </head>
@@ -55,6 +53,8 @@
 	                	lang: "ko-KR"
 	                });
 	            });
+	            
+	            
     		</script>
 		</c:if>
 		<!-- Content Wrapper -->
@@ -79,34 +79,35 @@
 							<c:choose>
 								<%-- if notice가 비어 있다면 진입 --%>
 								<c:when test="${ empty notice }">
-									<form>
+									<form id="insertNotice" action="notice" method="post">
 										<div class="input-group input-group-lg">
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input type="text" class="form-control" aria-label="Large"
+											<input name="title" type="text" class="form-control" aria-label="Large"
 												aria-describedby="inputGroup-sizing-sm">
 										</div>
 										<div id="summernote"></div>
-										<button type="button" class="btn btn-primary margin-top"
+										<button class="btn btn-primary margin-top"
 											style="margin-left: 15px" onclick="newNotice();">저장</button>
 										<button type="button" class="btn btn-secondary margin-top"
 											onclick="cancel();">취소</button>
 									</form>
 								</c:when>
-								<%-- else--%>
+								<%-- else 즉 수정일 경우에 진입--%>
 								<c:otherwise>
-									<form>
+									<form id="updateNotice" action="notice" method="post">
+										<input type="hidden" name="_method" value="put"/>
 										<div class="input-group input-group-lg">
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input type="text" class="form-control" aria-label="Large"
+											<input name="title" type="text" class="form-control" aria-label="Large"
 												aria-describedby="inputGroup-sizing-sm"
 												value="${notice.title }">
 										</div>
 										<div id="summernote">${ notice.content }</div>
-										<button type="button" class="btn btn-primary margin-top"
+										<button class="btn btn-primary margin-top"
 											style="margin-left: 15px" onclick="updateNotice();">저장</button>
 										<button type="button" class="btn btn-secondary margin-top"
 											onclick="cancel();">취소</button>
