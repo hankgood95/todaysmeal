@@ -5,11 +5,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Vote Board</title>
+	
+<!-- voteBoard CSS -->
+<style>
 
-<!-- Bootstrap CSS -->
-<link
-	href="${pageContext.servletContext.contextPath}/resources/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
+.container {
+	text-align: center;
+	width: 100%;
+}
+
+.container .card-contents {
+	border: 10px solid black;
+	border-radius: 5px;
+	margin-left: 400px;
+	margin-right:400px;
+}
+
+.container .card-contents .title p {
+	font-size: 40px;
+	font-style: italic;
+}
+
+.container .card-contents .image img {
+	border-radius: 5px;
+}
+
+.container .card-contents .content p {
+	font-size: 25px;
+}
+
+.container .card-contents .chart div {
+	border-radius: 5px;
+	height: 100px;
+}
+
+.container .card-contents .button-box {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(50%, auto));
+}
+
+.container .card-contents .button-box .button input {
+	all: unset;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+	font-size: 50px;
+	vertical-align: middle;
+}
+
+</style>
 </head>
 
 <body>
@@ -17,15 +63,24 @@
 <%@include file ="/WEB-INF/views/common/header.jsp"%>
     
 <!-- Card Section -->
-<div class="card mb-3" style="width: 800px; margin: auto;">
-	<p class="btn btn-dark d-md-flex justify-content-md-center" style="font-size: 30px; text-align: center; font-style: italic;"> 깻잎 논쟁  </p>
-	<img src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" class="card-img-top" alt="...">
-	<div class="card-body">
-		<p class="card-text" style="text-align: center; font-size: 25px">깻잎절임을 못 떼는 내 친구를 위해 깻잎지를 눌러주는 나의 연인. 당신은 이러한 행동을 이해할 수 있나요?</p>
-		<div id="barchart_values" style="margin: auto; height: 100px; "></div>
-		<div class="text-center">
-			<input class="btn btn-outline-dark mt-auto" type="button" value="찬성" onclick="agree();">
-			<input class="btn btn-outline-dark mt-auto" type="button" value="반대" onclick="disagree();"></input>
+<div class="container">
+	<div class="card-contents">
+		<div class="title">
+			<p>깻잎 논쟁</p>
+		</div>
+		<div class="image">
+			<img src="${pageContext.servletContext.contextPath}/resources/vote/img/a.jpeg" alt="...">
+		</div>
+		<div class="content">
+			<p>깻잎절임을 못 떼는 내 친구를 위해 깻잎지를 눌러주는 나의 연인. 당신은 이러한 행동을 이해할 수 있나요?</p>
+		</div>
+		<div class="button-box">
+			<div class="button">
+				<input type="button" value="찬성" onclick="agree();"></input>
+			</div>
+			<div class="button">
+				<input type="button" value="반대" onclick="disagree();"></input>
+			</div>
 		</div>
 	</div>
 </div>
@@ -82,9 +137,4 @@ function drawChart() {
 		return ;
 	}
 </script>
-	
-<!-- Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
- </body>
 </html>
