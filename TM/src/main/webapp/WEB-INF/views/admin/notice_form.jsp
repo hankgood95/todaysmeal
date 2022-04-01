@@ -77,7 +77,7 @@
 	        				$(el).summernote('insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
 	        			},
 	        			error:function(XMLHttpRequest, textStatus, errorThrown){
-	        				alert("서버와의 통신 실패");
+	        				alert("서버와의 통신 실패"); //저장이 실패 됐을때 진입해서 alert 창 띄워줌
 	        			}
 	        		})
 	        	}
