@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -177,8 +176,11 @@ public class AdminNoticeController {
 		JsonObject jsonObject = new JsonObject();
 		
 		//프로젝트 내부에 저장을 하기 위해서 contextRoot 값을 가져옴. 하지만 이건 지금만 이렇게 할거고 실제 배포시엔 외부경로에다가 저장을 할거임
-		String contextRoot= new HttpServletRequestWrapper(request).getRealPath("/"); //프로젝트의 context root를 가져온거같음
-		String fileRoot = contextRoot+"resources/admin/img";
+		//web application 상의 경로를 가져온다. 어쩌면 이건 상대경로임. 절대경로라면 보안상의 이유로 절대경로로 접근을 못하게함
+		String contextRoot= request.getSession().getServletContext().getRealPath("resources"); 
+		String fileRoot = contextRoot+"\\admin\\img\\";
+		
+		logger.info("fileRoot : "+fileRoot);
 		
 		File targetDir = new File(fileRoot);
 		
@@ -200,6 +202,8 @@ public class AdminNoticeController {
 		//UUID라는 클래스를 사용해서 고유의 파일 이름을 가질수 있게 했고 extension을 붙여서 확장자명을 붙여주었다.
 		String savedFileName = UUID.randomUUID()+ extension;
 		
+		logger.info("savedFileName : "+savedFileName);
+		
 		//그럼 이제 파일명을 만들었으니 새로 파일을 만들일만 남았다.
 		
 		//contextRoot/resources/admin/img/새로지은파일명.확장자 이렇게 되어 있는 File 인스턴스를 생성했다.
@@ -220,7 +224,10 @@ public class AdminNoticeController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 			
 			//위 파일을 저장하는 과정에서 아무런 문제가 발생하지 않는다면 이제 실제 파일이 담겨져있는 파일경로를 json을 통해서 보내준다.
-			jsonObject.addProperty("url",fileRoot+savedFileName);
+			//파일경로를 보낼땐 절대 경로가 되어서는 안된다 왜냐 보안상의 이유로 안된다 따라서 상대경로를 보내줘야 한다.
+			//상대경로로는 프로젝트 path/resources/admin/img/파일이름 이렇게 보내줘야지만 해당 파일에 접근을 할수가 있다.
+			jsonObject.addProperty("url",request.getContextPath()+"/resources/admin/img/"+savedFileName);
+			logger.info("url : "+jsonObject.get("url").toString());
 			//그리고 responseCode로 success를 준다.
 			jsonObject.addProperty("responseCode", "success");
 		} catch (IOException e) { //저장하는데 문제가 있다면 여기로 진입을 하게 되는데
