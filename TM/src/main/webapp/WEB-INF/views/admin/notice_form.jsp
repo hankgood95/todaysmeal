@@ -55,7 +55,7 @@
 	                	callbacks :{
 	                		onImageUpload : function(files,editor,welEditable){
 	                			//파일 업로드할때 여러 이미지가 있을수 있어서 반복문을 사용해서 올린 이미지 수만큼을 반복
-	                			for(var i = files.length -1;i>=;i--){
+	                			for(var i = files.length -1;i>=0;i--){
 	                				uploadSummernoteImageFile(files[i],this);
 	                			}
 	                		}
@@ -74,7 +74,7 @@
 	        			enctype:'multipart/form-data',
 	        			processData:false,
 	        			success: function(data){
-	        				$(el).summernote('editor.insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
+	        				$(el).summernote('insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
 	        			},
 	        			error:function(XMLHttpRequest, textStatus, errorThrown){
 	        				alert("서버와의 통신 실패");
@@ -111,8 +111,8 @@
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input name="title" type="text" class="form-control" aria-label="Large"
-												aria-describedby="inputGroup-sizing-sm">
+											<input name="title" type="text" class="form-control"
+												aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 										</div>
 										<textarea id="summernote" name="content"></textarea>
 										<button class="btn btn-primary margin-top"
@@ -124,13 +124,13 @@
 								<%-- else 즉 수정일 경우에 진입--%>
 								<c:otherwise>
 									<form id="updateNotice" action="notice" method="post">
-										<input type="hidden" name="_method" value="put"/>
+										<input type="hidden" name="_method" value="put" />
 										<div class="input-group input-group-lg">
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input name="title" type="text" class="form-control" aria-label="Large"
-												aria-describedby="inputGroup-sizing-sm"
+											<input name="title" type="text" class="form-control"
+												aria-label="Large" aria-describedby="inputGroup-sizing-sm"
 												value="${notice.title }">
 										</div>
 										<textarea id="summernote" name="content">${ notice.content }</textarea>
