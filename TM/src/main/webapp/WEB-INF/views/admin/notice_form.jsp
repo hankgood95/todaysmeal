@@ -64,21 +64,22 @@
 	            });
 	            
 	        	function uploadSummernoteImageFile(file, el){
-	        		data = new FormData();
-	        		data.append("file",file);
+	        		data = new FormData(); //이미지를 업로드할때는 FormData()를 사용한다고 한다. 이유는? 아무래도 이미지는 데이터가 크니까 한번에 보내지 못하고 여러번 잘라서 보내야 하기때문인가?(내 추측임)
+	        		data.append("file",file); //해당 form에 file이라는 걸 append해서 추가한다.
 	        		$.ajax({
-	        			data:data,
-	        			type:"POST",
-	        			url:"uploadSummernoteImageFile",
-	        			contentType: false,
-	        			enctype:'multipart/form-data',
-	        			processData:false,
-	        			success: function(data){
+	        			data:data, //data로는 <form>에서 받은 데이터를 보낸다는 뜻이다.
+	        			type:"POST", //type은 POST
+	        			url:"uploadSummernoteImageFile", //url로 이동
+	        			contentType: false, //contentType 은 default 값이 "application/x-www-form-urlencoded; charset=UTF-8" 인데, "multipart/form-data" 로 전송이 되게 false 로 넣어준다
+	        			enctype:'multipart/form-data', //이걸 써줘야 넘어갈때 파일 경로만 넘어가는것이 아닌 파일 내용도 같이 넘어가게 된다.
+	        			processData:false, //기본적으로 json은 key와 value의 형태로 이루어지는데 파일을 넘기는것이기 때문에 key와 value가 없어 key와 value 형태로 해서 보내지 않기 위해 false값을 준것이다.
+	        			success: function(data){ //성공시에 들어옴
 	        				$(el).summernote('insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
 	        			},
 	        			error:function(XMLHttpRequest, textStatus, errorThrown){
 	        				alert("서버와의 통신 실패"); //저장이 실패 됐을때 진입해서 alert 창 띄워줌
 	        			}
+	        			// https://tysoso.tistory.com/40 이걸 보면 ajax의 옵션들을 볼수가 있다. 이를 보면 어떻게 활용할지가 약간 보일것이다.
 	        		})
 	        	}
 	            

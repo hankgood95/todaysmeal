@@ -165,7 +165,7 @@ public class AdminNoticeController {
 	}
 	
 	//@ResponseBody를 사용하는 이유는 Json 객체를 body에다가 실어서 보낼것이기 때문
-	@RequestMapping(value="uploadSummernoteImageFile")
+	@RequestMapping(value="uploadSummernoteImageFile", method=RequestMethod.POST)
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
 		
