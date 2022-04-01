@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.JsonObject;
 import com.tm.kr.admin.notice.model.Notice;
 import com.tm.kr.member.model.Member;
 
@@ -154,5 +158,31 @@ public class AdminNoticeController {
 		//하지만 난 가져올 DB가 없으니 일단은 위에서 만든 notice를 보내줌
 		model.addAttribute("notice", notice);
 		return "admin/update_notice";
+	}
+	
+	@RequestMapping(value="uploadSummernoteImageFile")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+		
+		//여기서 MultipartFile 이란 웹 클라이언트가 요청을 보낼때 http 프로토콜 body 부분에 데이터를 여러부분으로 나누어서 보내는 것이다.
+		//이렇게해서 파일을 받아오는 이유는 일단 HttpServletRequest에는 파일을 받지 않기 때문이다. 따라서 파일을 받기 위햇 MultipartFile을 사용하는것이다.
+		
+		
+		JsonObject jsonObject = new JsonObject();
+		
+		//프로젝트 내부에 저장을 하기 위해서 contextRoot 값을 가져옴. 하지만 이건 지금만 이렇게 할거고 실제 배포시엔 외부경로에다가 저장을 할거임
+		String contextRoot= new HttpServletRequestWrapper(request).getRealPath("/"); //프로젝트의 context root를 가져온거같음
+		String fileRoot = contextRoot+"resources/admin/img";
+		
+		String originalFileName = multipartFile.getOriginalFilename(); //파일의 오리지널 파일 이름을 가져왔음
+		//lastIndexOf()는 특정 문자를 뒤에서부터 .을 찾아서 오는것이다. 따라서 . 즉 확장자 전까지의 index를 return 한다.
+		//그럼 해당 index 부터 마지막 index까지를 extension에 집어 넣게 되는것이다.
+		//ex) aws.js를 하게 되면 lastIndex는 4가 되는것이고 subString으로 부터 받아오는 값은 js가 되는것이다.
+		//그래서 변수명을 extension이라고 적었다. 왜냐면 확장자명이니까
+		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+		
+		
+		
+		return "";
 	}
 }
