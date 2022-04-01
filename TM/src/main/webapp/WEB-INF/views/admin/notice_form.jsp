@@ -51,9 +51,33 @@
 	                $('#summernote').summernote({
 	                	height: 500,
 	                	lang: "ko-KR"
+	                	//콜백함수를 만들어서 이미지를 업로드하는 이벤트가 발생했을때를 체크하는것부터 만들어보자.
+	                	callbacks :{
+	                		onImageUpload : function(files,editor,welEditable){
+	                			//파일 업로드할때 여러 이미지가 있을수 있어서 반복문을 사용해서 올린 이미지 수만큼을 반복
+	                			for(var i = files.length -1;i>=;i--){
+	                				uploadSummernoteImageFile(files[i],this);	
+	                			}
+	                		}
+	                	}
 	                });
 	            });
 	            
+	        	function uploadSummernoteImageFile(file, el){
+	        		data = new FormData();
+	        		data.append("file",file);
+	        		$.ajax({
+	        			data:data,
+	        			type:"POST",
+	        			url:"uploadSummernoteImageFile",
+	        			contentType: false,
+	        			enctype:'multipart/form-data',
+	        			processData:false,
+	        			success: function(data){
+	        				$(el).summernote('editor.insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
+	        			}
+	        		})
+	        	}
 	            
     		</script>
 		</c:if>
