@@ -8,9 +8,8 @@
 	href="${pageContext.servletContext.contextPath}/resources/admin/css/admin_comment_modal.css"
 	rel="stylesheet">
 <style type="text/css">
-
 .tg {
- 	width : 500px;
+	width: 500px;
 	border: none;
 	border-collapse: collapse;
 	border-color: #93a1a1;
@@ -70,24 +69,22 @@
 .green-card {
 	all: unset;
 	background-color: green;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-
-
+	color: white;
+	padding: 5px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 20px;
 }
 
 .red-card {
 	all: unset;
 	background-color: red;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    margin-left: 10px;
+	color: white;
+	padding: 5px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 20px;
+	margin-left: 10px;
 }
 
 .wrap-card {
@@ -95,12 +92,10 @@
 	text-align: center;
 }
 
-
-
 #report-context {
-	height : auto;
-	max-width : 500px;
-	overflow:hidden;
+	height: auto;
+	max-width: 500px;
+	overflow: hidden;
 }
 </style>
 </head>
@@ -115,7 +110,7 @@
 			<table class="tg">
 				<thead>
 					<tr>
-						<th class="tg-0pky" colspan="2" id= "date" style = width >날짜</th>
+						<th class="tg-0pky" colspan="2" id="date" style="">날짜</th>
 						<th class="tg-0pky" colspan="3">2020.12.05</th>
 					</tr>
 				</thead>
@@ -128,20 +123,33 @@
 						<td class="tg-c3ow" colspan="5">댓글 내용</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5" id= "report-context">니 줫같이 생겼어 </td>
+						<td class="tg-2bhk" colspan="5" id="report-context">니 줫같이 생겼어
+						</td>
 					</tr>
 					<tr>
 						<td class="tg-c3ow" colspan="5">신고사유</td>
 					</tr>
 					<tr>
-						<td class="tg-2bhk" colspan="5" id="report-reason">욕해서 신고함 </td>
+						<td class="tg-2bhk" colspan="5" id="report-reason">욕해서 신고함</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class= "wrap-card">
-				<button class="green-card">신고 삭제</button>
-				<button class="red-card">댓글 삭제</button>
+			<div class="wrap-card">
+				<button class="green-card" onclick="deleteReport()">신고 삭제</button>
+				<button class="red-card" onclick="deleteComment()">댓글 삭제</button>
 			</div>
+			<script>
+				function deleteReport() {
+					if (confirm("신고 삭제하시겠습니까?")) {
+						alert("삭제 되었습니다.");
+					}
+				}
+				function deleteComment() {
+					if (confirm("댓글 삭제하시겠습니까??")) {
+						alert("삭제 되었습니다.");
+					}
+				}
+			</script>
 		</div>
 	</div>
 </body>

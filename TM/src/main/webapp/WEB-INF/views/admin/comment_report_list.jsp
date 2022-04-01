@@ -20,7 +20,7 @@
 
 .title:hover {
 	text-shadow: -.25px -.25px 0 black, .25px .25px;
-	background-color : gray;
+	background-color : #F2F2F2;
 }
 </style>
 
@@ -58,6 +58,7 @@
 					function close(){
 					document.querySelector("#modal").style.display ='none';
 					}
+				  
 				});
 			</script>
 		</c:if>
