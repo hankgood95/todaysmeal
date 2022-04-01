@@ -1,13 +1,18 @@
 package com.tm.kr.admin.notice.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -160,19 +165,30 @@ public class AdminNoticeController {
 		return "admin/update_notice";
 	}
 	
+	//@ResponseBody를 사용하는 이유는 Json 객체를 body에다가 실어서 보낼것이기 때문
 	@RequestMapping(value="uploadSummernoteImageFile")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
 		
 		//여기서 MultipartFile 이란 웹 클라이언트가 요청을 보낼때 http 프로토콜 body 부분에 데이터를 여러부분으로 나누어서 보내는 것이다.
 		//이렇게해서 파일을 받아오는 이유는 일단 HttpServletRequest에는 파일을 받지 않기 때문이다. 따라서 파일을 받기 위햇 MultipartFile을 사용하는것이다.
 		
-		
+		//JsonObject는 json 형태의 데이터를 구성되게 해주는 클래스이다.
 		JsonObject jsonObject = new JsonObject();
 		
 		//프로젝트 내부에 저장을 하기 위해서 contextRoot 값을 가져옴. 하지만 이건 지금만 이렇게 할거고 실제 배포시엔 외부경로에다가 저장을 할거임
 		String contextRoot= new HttpServletRequestWrapper(request).getRealPath("/"); //프로젝트의 context root를 가져온거같음
 		String fileRoot = contextRoot+"resources/admin/img";
+		
+		File targetDir = new File(fileRoot);
+		
+		//해당 디렉토리가 있는지 확인
+		if(!targetDir.exists()) {
+			targetDir.mkdir();
+			if(targetDir.exists()) {
+				logger.info(fileRoot+" directory successfully made");
+			}
+		}
 		
 		String originalFileName = multipartFile.getOriginalFilename(); //파일의 오리지널 파일 이름을 가져왔음
 		//lastIndexOf()는 특정 문자를 뒤에서부터 .을 찾아서 오는것이다. 따라서 . 즉 확장자 전까지의 index를 return 한다.
@@ -181,8 +197,41 @@ public class AdminNoticeController {
 		//그래서 변수명을 extension이라고 적었다. 왜냐면 확장자명이니까
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
 		
+		//UUID라는 클래스를 사용해서 고유의 파일 이름을 가질수 있게 했고 extension을 붙여서 확장자명을 붙여주었다.
+		String savedFileName = UUID.randomUUID()+ extension;
 		
+		//그럼 이제 파일명을 만들었으니 새로 파일을 만들일만 남았다.
 		
-		return "";
+		//contextRoot/resources/admin/img/새로지은파일명.확장자 이렇게 되어 있는 File 인스턴스를 생성했다.
+		File targetFile = new File(fileRoot+savedFileName); 
+		
+		//file 인스턴스를 생성했으니 일단 해당 파일이 실제로 존재하는지를 먼저 체크해보자.
+		
+		try {
+			//여기서 InputStream을 설명하기 전에 일단 Stream부터 설명을 하겠다.
+			//Stream 이란 데이터가 이동하는 통로를 의미 한다.
+			//그러면 InputStream을 특정 파일 데이터를 읽거나 소켓을 통해 데이터를 읽거나 키보드를 통해서 입력한 데이터를 읽을때 사용한다.
+			//여기서 InputStream은 multipartFile을 즉 파일을 .getInputStream()으로 받아와서 fileStream에다가 저장한것이다.
+			InputStream fileStream = multipartFile.getInputStream();
+			
+			//그럼이제 InputStream에는 받아온 File 데이터가 있는것이다. 이제 이 File 데이터를 어디가에다가 실제로 저장을 하면 되는데
+			//그역할을 해주는 부분이 아래 소스이다.
+			//받아온 fileStream을 targetFile의 경로에다가 복사를 해줘서 파일을 저장하는것이다.
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);
+			
+			//위 파일을 저장하는 과정에서 아무런 문제가 발생하지 않는다면 이제 실제 파일이 담겨져있는 파일경로를 json을 통해서 보내준다.
+			jsonObject.addProperty("url",fileRoot+savedFileName);
+			//그리고 responseCode로 success를 준다.
+			jsonObject.addProperty("responseCode", "success");
+		} catch (IOException e) { //저장하는데 문제가 있다면 여기로 진입을 하게 되는데
+			FileUtils.deleteQuietly(targetFile); //저장된 파일을 삭제한다.
+			jsonObject.addProperty("responseCode", "error"); //그리고 jsonObject에 reponseCode를 error로 준다.
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//그리고 마지막으로 jsonObject를 String으로 변환해서 돌려준다.
+		return jsonObject; //여기서 따로 페이지를 명시해주지 않아도 되는 이유는 애초에 Ajax는 비동기이기 때문이다. 따라서 페이지의 전환이 없고 필요한 데이터만 보내게 된다.
+		
 	}
 }
