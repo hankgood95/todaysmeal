@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //커맨드쉬프트 O ==> 자동으로 임포트 시켜줌,  
 @Controller
-
+@RequestMapping("/admin/*")
 public class AdminCommentController {
 	
 	Logger logger = LoggerFactory.getLogger(AdminCommentController.class); //나중에 로그를찍게 되는일이있다면 여기가 왜 바뀌었는지 다시물어보자.매개변수 물어보면댐 왜이거인
