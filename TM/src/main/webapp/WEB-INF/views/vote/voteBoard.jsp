@@ -3,65 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Vote Board</title>
-	
-<!-- voteBoard CSS -->
-<style>
-
-.container {
-	text-align: center;
-	width: 100%;
-}
-
-.container .card-contents {
-	border: 10px solid black;
-	border-radius: 5px;
-	margin-left: 400px;
-	margin-right:400px;
-}
-
-.container .card-contents .title p {
-	font-size: 40px;
-	font-style: italic;
-}
-
-.container .card-contents .image img {
-	border-radius: 5px;
-}
-
-.container .card-contents .content p {
-	font-size: 25px;
-}
-
-.container .card-contents .chart div {
-	border-radius: 5px;
-	height: 100px;
-}
-
-.container .card-contents .button-box {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(50%, auto));
-}
-
-.container .card-contents .button-box .button input {
-	all: unset;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	color: white;
-	cursor: pointer;
-	font-size: 50px;
-	vertical-align: middle;
-}
-
-</style>
+	<meta charset="UTF-8">
+	<title>Vote Board</title>
+	<!-- button JS -->
+	<script src="${pageContext.servletContext.contextPath}/resources/vote/js/button.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<!-- voteBoard CSS -->
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/vote/css/vote-board.css">
 </head>
-
 <body>
 <!-- Header Include -->
 <%@include file ="/WEB-INF/views/common/header.jsp"%>
-    
 <!-- Card Section -->
 <div class="container">
 	<div class="card-contents">
@@ -84,57 +37,6 @@
 		</div>
 	</div>
 </div>
-    
 <!-- Footer Include -->
 <%@include file ="/WEB-INF/views/common/footer.jsp"%>
-
-<!-- Char JS -->
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Genre', '찬성', '반대', { role: 'annotation' } ],
-        ['', 10, 24, ''],
-
-      ]);
-
-	var view = new google.visualization.DataView(data);
-	view.setColumns([0, 1,
-	                 { calc: "stringify",
-	                   sourceColumn: 1,
-	                   type: "string",
-	                   role: "annotation" },
-	                 2]);
-	var options = {
-	  width: '80%',
-	  height: 70,
-	  legend: 'none',
-	  bar: { groupWidth: '75%' },
-	  isStacked: 'percent'
-	};
-	var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-	chart.draw(view, options);
-}
-  
-</script>
-
-<!-- Vote agree or disagree JS -->
-<script>
-	function agree() {
-		if (confirm("찬성하시겠습니까?"))
-			alert("확인 눌렀다~~~~");
-		else
-			alert("취소 눌렀다~~~~");
-		return ;
-	}
-	function disagree() {
-		if (confirm("반대하시겠습니까?"))
-			alert("확인 눌렀다~~~~");
-		else
-			alert("취소 눌렀다~~~~");
-		return ;
-	}
-</script>
 </html>
