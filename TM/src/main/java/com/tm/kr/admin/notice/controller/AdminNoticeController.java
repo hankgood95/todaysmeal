@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -240,5 +241,16 @@ public class AdminNoticeController {
 		//그리고 마지막으로 jsonObject를 String으로 변환해서 돌려준다.
 		return jsonObject; //여기서 따로 페이지를 명시해주지 않아도 되는 이유는 애초에 Ajax는 비동기이기 때문이다. 따라서 페이지의 전환이 없고 필요한 데이터만 보내게 된다.
 		
+	}
+	
+	@RequestMapping(value="delImage",method=RequestMethod.DELETE)
+	@ResponseBody
+	public JsonObject deleteImage(@RequestParam Map<String,Object> param) {
+		JsonObject jsonObject = new JsonObject();
+		String src = (String) param.get("src");
+		logger.info("이미지 삭제에 들어옴");
+		logger.info("src : "+src);
+		
+		return jsonObject;
 	}
 }

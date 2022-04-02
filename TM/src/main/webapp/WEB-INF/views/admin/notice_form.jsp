@@ -58,6 +58,10 @@
 	                			for(var i = files.length -1;i>=0;i--){
 	                				uploadSummernoteImageFile(files[i],this);
 	                			}
+	                		},
+	                		onMediaDelete : function(target){ //summernote에 올라간 사진을 delete 하면 호출되는 콜백 메소드
+	                			//alert(target[0].src);
+	                			deleteFile(target[0].src);
 	                		}
 	                	}
 	                });
@@ -80,6 +84,18 @@
 	        				alert("서버와의 통신 실패"); //저장이 실패 됐을때 진입해서 alert 창 띄워줌
 	        			}
 	        			// https://tysoso.tistory.com/40 이걸 보면 ajax의 옵션들을 볼수가 있다. 이를 보면 어떻게 활용할지가 약간 보일것이다.
+	        		})
+	        	}
+	        	
+	        	function deleteFile(src){
+	        		$.ajax({
+	        			data: {src: src}, //json 형식으로 넘겨줌
+	        			type: "DELETE",
+	        			url: "delImage",
+	        			cache: false,
+	        			success:function(data){
+	        				console.log(data);
+	        			}
 	        		})
 	        	}
 	            
