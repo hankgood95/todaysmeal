@@ -50,10 +50,38 @@
 	                
 	                $('#summernote').summernote({
 	                	height: 500,
-	                	lang: "ko-KR"
+	                	lang: "ko-KR",
+	                	//콜백함수를 만들어서 이미지를 업로드하는 이벤트가 발생했을때를 체크하는것부터 만들어보자.
+	                	callbacks :{
+	                		onImageUpload : function(files,editor,welEditable){
+	                			//파일 업로드할때 여러 이미지가 있을수 있어서 반복문을 사용해서 올린 이미지 수만큼을 반복
+	                			for(var i = files.length -1;i>=0;i--){
+	                				uploadSummernoteImageFile(files[i],this);
+	                			}
+	                		}
+	                	}
 	                });
 	            });
 	            
+	        	function uploadSummernoteImageFile(file, el){
+	        		data = new FormData(); //이미지를 업로드할때는 FormData()를 사용한다고 한다. 이유는? 아무래도 이미지는 데이터가 크니까 한번에 보내지 못하고 여러번 잘라서 보내야 하기때문인가?(내 추측임)
+	        		data.append("file",file); //해당 form에 file이라는 걸 append해서 추가한다.
+	        		$.ajax({
+	        			data:data, //data로는 <form>에서 받은 데이터를 보낸다는 뜻이다.
+	        			type:"POST", //type은 POST
+	        			url:"uploadSummernoteImageFile", //url로 이동
+	        			contentType: false, //contentType 은 default 값이 "application/x-www-form-urlencoded; charset=UTF-8" 인데, "multipart/form-data" 로 전송이 되게 false 로 넣어준다
+	        			enctype:'multipart/form-data', //이걸 써줘야 넘어갈때 파일 경로만 넘어가는것이 아닌 파일 내용도 같이 넘어가게 된다.
+	        			processData:false, //기본적으로 json은 key와 value의 형태로 이루어지는데 파일을 넘기는것이기 때문에 key와 value가 없어 key와 value 형태로 해서 보내지 않기 위해 false값을 준것이다.
+	        			success: function(data){ //성공시에 들어옴
+	        				$(el).summernote('insertImage',data.url); //image src 값에 서버의 경로값을 입력해주는 부분 
+	        			},
+	        			error:function(XMLHttpRequest, textStatus, errorThrown){
+	        				alert("서버와의 통신 실패"); //저장이 실패 됐을때 진입해서 alert 창 띄워줌
+	        			}
+	        			// https://tysoso.tistory.com/40 이걸 보면 ajax의 옵션들을 볼수가 있다. 이를 보면 어떻게 활용할지가 약간 보일것이다.
+	        		})
+	        	}
 	            
     		</script>
 		</c:if>
@@ -84,8 +112,8 @@
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input name="title" type="text" class="form-control" aria-label="Large"
-												aria-describedby="inputGroup-sizing-sm">
+											<input name="title" type="text" class="form-control"
+												aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 										</div>
 										<textarea id="summernote" name="content"></textarea>
 										<button class="btn btn-primary margin-top"
@@ -97,13 +125,13 @@
 								<%-- else 즉 수정일 경우에 진입--%>
 								<c:otherwise>
 									<form id="updateNotice" action="notice" method="post">
-										<input type="hidden" name="_method" value="put"/>
+										<input type="hidden" name="_method" value="put" />
 										<div class="input-group input-group-lg">
 											<div class="input-group-prepend" style="margin-bottom: 10px">
 												<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 											</div>
-											<input name="title" type="text" class="form-control" aria-label="Large"
-												aria-describedby="inputGroup-sizing-sm"
+											<input name="title" type="text" class="form-control"
+												aria-label="Large" aria-describedby="inputGroup-sizing-sm"
 												value="${notice.title }">
 										</div>
 										<textarea id="summernote" name="content">${ notice.content }</textarea>
