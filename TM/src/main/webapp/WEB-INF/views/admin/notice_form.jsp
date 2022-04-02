@@ -72,7 +72,7 @@
 	        		data.append("file",file); //해당 form에 file이라는 걸 append해서 추가한다.
 	        		$.ajax({
 	        			data:data, //data로는 <form>에서 받은 데이터를 보낸다는 뜻이다.
-	        			type:"POST", //type은 POST
+	        			type:"POST", //type은 POST, HTTP Method : GET, PUT, POST, DELETE
 	        			url:"uploadSummernoteImageFile", //url로 이동
 	        			contentType: false, //contentType 은 default 값이 "application/x-www-form-urlencoded; charset=UTF-8" 인데, "multipart/form-data" 로 전송이 되게 false 로 넣어준다
 	        			enctype:'multipart/form-data', //이걸 써줘야 넘어갈때 파일 경로만 넘어가는것이 아닌 파일 내용도 같이 넘어가게 된다.
@@ -92,9 +92,12 @@
 	        			data: {src: src}, //json 형식으로 넘겨줌
 	        			type: "DELETE",
 	        			url: "delImage",
-	        			cache: false,
+	        			cache: false, //왜쓸지
 	        			success:function(data){
 	        				console.log(data);
+	        			},
+	        			error:function(data){
+	        				alert("좆됐어~");
 	        			}
 	        		})
 	        	}
