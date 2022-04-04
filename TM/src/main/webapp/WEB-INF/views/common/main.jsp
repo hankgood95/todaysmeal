@@ -136,6 +136,10 @@ ol#box_list li:before {
     
 }
 
+#box_list li:hover {
+  text-decoration: underline;
+}
+
 #box_list {
 
 }
@@ -158,6 +162,10 @@ ol#box_list li:before {
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
+}
+
+#Btn_0:hover {
+    background-color: black;
 }
 
 .modal {
