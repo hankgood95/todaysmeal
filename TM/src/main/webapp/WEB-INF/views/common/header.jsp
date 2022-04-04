@@ -90,6 +90,14 @@ div {
     white-space: nowrap;
   }
   
+  .hd_header .header .gnb_list-name:visited, .hd_header .header .gnb_list-name:link {
+    color: black;
+  }
+
+  .hd_header .header .gnb_list-name:hover {
+    color: skyblue;
+  }
+  
   a {
     color: #1c1c1c;
     text-decoration: none;
