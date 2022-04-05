@@ -8,6 +8,8 @@
 <style>
 /* footer 시작 */
 
+/* footer 시작 */
+
   #bot {
     max-width: 100%;
     min-width: 622px;
@@ -15,10 +17,6 @@
   
   footer {
     display: block;
-    margin-top: 16px;
-    margin-left: 100px;
-    margin-right: 100px;
-    background-color: #ddd;
   }
   
   .clear {
@@ -42,9 +40,7 @@
     margin-bottom: 20px;
   }
   
-  .footer .snb_store {
-    padding-left: 0;
-  }
+
   
   .footer .clearfix_store {
     margin-top: 5px;
@@ -53,20 +49,11 @@
   
   ul {
     display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
   }
-  
-  ul, li {
-    list-style: none;
-  }
-  
+
   .footer .snb ul li.division {
     margin-right: 8px;
-    padding-right: 8px;
+    padding-right: 12px;
   }
   
   .footer .snb ul li {
@@ -88,6 +75,7 @@
     font-size: 13px;
   }
   
+  /* footer 끝 */
   
 /* 관리자 */
 
