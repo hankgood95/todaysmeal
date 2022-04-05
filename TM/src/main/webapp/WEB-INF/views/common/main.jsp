@@ -162,9 +162,10 @@ ol#box_list li:before {
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
+    margin-top: 20px;
 }
 
-#Btn_0:hover {
+#Btn_0:hover, #Btn_1:hover, #Btn_2:hover {
     background-color: black;
 }
 
@@ -193,7 +194,8 @@ ol#box_list li:before {
     text-align: center;
     position: relative;
     top: 0px;
-    width: 40%;
+    width: 500px;
+    height: 300px;
     border-radius: 10px;
 }
 
@@ -203,37 +205,24 @@ ol#box_list li:before {
     width: 100%;
 }
 
-.modal .modal_content .modal_photo {
-    width: 100%;
-    
+.modal .modal_content .modal_flex {
+    display: flex;
 }
 
-.modal .modal_content .modal_photo img {
+.modal .modal_content .modal_flex .modal_wrap {
+    width: 247px;
+    height: 240px;
+}
+
+.modal .modal_content .modal_flex .modal_wrap .modal_photo {
     margin-top: 20px;
     width: 200px;
     height: 180px;
-
-}
-
-.modal .modal_content .modal_vote {
-    width: 100%;
-}
-
-.modal .modal_content .modal_vote .Btn_1 {
-    margin-top: 30px;
-    all: unset;
-    background-color: steelblue;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
     
 }
 
-/* 그림과 버튼을 하나로 묶고 옆으로 나란히 정렬하기 */
-
-.modal .modal_content .modal_vote .Btn_2 {
+.modal .modal_content .modal_flex .modal_wrap .modal_vote{
+    margin-top: 30px;
     all: unset;
     background-color: steelblue;
     color: white;
@@ -304,6 +293,29 @@ ol#box_list li:before {
 
 /* 투표완료풍선끝 */
 
+/* 텍스트 애니메이션 */
+
+.parent {
+  height: 15px; /* 애니메이션 높이 */
+  overflow-y: hidden;
+  display: block;      
+}
+.parent .child {
+  font-size: 15px;/* 애니메이션 높이 */
+  font-weight: bold;
+  line-height: 1;
+  animation-name: grow;
+  animation-duration: 3s;/* 애니메이션 시간 */
+  animation-iteration-count: infinite;
+}
+/* 키프레임 애니메이션 */
+@keyframes grow {
+    from { transform: translateY(15px) }/* 애니메이션 높이 */
+    to { transform: translateY(0) }
+}
+
+/* 텍스트 애니메이션 끝 */
+
 </style>
 
 </head>
@@ -341,7 +353,7 @@ ol#box_list li:before {
             <div class="content_box2">
               <div class="box_tit2">
                 <h3 class="tit2">투밀 3주차 음식 투표 결과</h3>
-                <h4 class="tit2_s">짜장 vs 짬뽕</h4>
+                <div class="parent"><div class="child">현재 <span style="color:tomato">312명</span> 투표 참여중</div></div>
                 <button id="Btn_0">투표하기</button>
                 <div class="bubble bubble_hidden">투표가 완료되었습니다.</div>
                 <div class="vote_bar"></div>
@@ -357,13 +369,26 @@ ol#box_list li:before {
       <div class="modal_overlay"></div>
       <div class="modal_content">
         <h1>투밀 3주차 투표</h1>
-        <div class="modal_photo">
-          <img class="vote1" src="${pageContext.servletContext.contextPath}/resources/main/img/vote1.png" alt="">
-          <img class="vote2" src="${pageContext.servletContext.contextPath}/resources/main/img/vote2.png" alt="">
-        </div>
-        <div class="modal_vote">
-          <button class="Btn_1">짜장</button>
-          <button class="Btn_2">짬뽕</button>
+        <div class="modal_flex">
+          <div class="modal_wrap">
+            <img class="modal_photo" src="${pageContext.servletContext.contextPath}/resources/main/img/vote1.png" alt="">
+            <button id="Btn_1" class="Btn_1 modal_vote">짜장</button>
+          </div>
+          <div class="modal_wrap">
+            <img class="modal_photo" src="${pageContext.servletContext.contextPath}/resources/main/img/vote2.png" alt="">
+            <button id="Btn_2" class="Btn_2 modal_vote">짬뽕</button>
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div class="modal2 hidden2">
+      <div class="main modal_overlay2">
+        <div class="container">
+            <input type="text" placeholder="ID" id="id" class="account">
+            <input type="password" placeholder="Password" id="password" class="account">
+            <button id="login" class="account">login</button>
+            <p id="alert" class="account"></p>
+            <button class="Btn_close">창닫기</button>
         </div>
       </div>
     </div>
